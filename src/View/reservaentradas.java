@@ -80,9 +80,15 @@ public class reservaentradas extends JFrame {
 		model.addColumn("Abizena");
 		model.addColumn("NAN");
 		model.addColumn("Ordaintze Metodoa");
+<<<<<<< HEAD
 		model.addRow(new Object[]{"1", "Kepa", "Capipe", "12345678P", "Paypal"});
 		model.addRow(new Object[]{"2", "Unai", "Garralon", "32414425G", "Visa"});
 		model.addRow(new Object[]{"3", "Ekain", "Calvinho", "89204294K", "Visa"});
+=======
+		model.addRow(new Object[]{"1", "Duis", "Capipe", "12345678P", "Paypal"});
+		model.addRow(new Object[]{"2", "Victor", "Garralon", "32414425G", "Visa"});
+		model.addRow(new Object[]{"3", "Sergio", "Calvinho", "89204294K", "Visa"});
+>>>>>>> a7647df81ceed9e062fb0597c3f1b632f602e61b
 		model.addRow(new Object[]{"4", "JeanCarlo", "Toro", "323486597", "Mastercard"});
 		/**/
 		table_1 = new JTable();
