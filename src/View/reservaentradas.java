@@ -67,7 +67,7 @@ public class reservaentradas extends JFrame {
 		btnNewButton.setBounds(10, 219, 167, 21);
 		contentPane.add(btnNewButton);
 		
-		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU");
+		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU:");
 		btnErreserbakGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
