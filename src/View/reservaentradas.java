@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -18,6 +19,7 @@ public class reservaentradas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -57,7 +59,7 @@ public class reservaentradas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(10, 219, 133, 21);
+		btnNewButton.setBounds(10, 219, 167, 21);
 		contentPane.add(btnNewButton);
 		
 		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU");
@@ -65,19 +67,35 @@ public class reservaentradas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnErreserbakGehitu.setBounds(293, 219, 133, 21);
+		btnErreserbakGehitu.setBounds(259, 219, 167, 21);
 		contentPane.add(btnErreserbakGehitu);
 		table = new JTable();
 		table.setBounds(26, 70, 381, 129);
 		contentPane.add(table);
 		DefaultTableModel model = new DefaultTableModel();
 		table.setModel(model);
+		
 		model.addColumn("ID_SESION");
 		model.addColumn("Izena");
 		model.addColumn("Abizena");
+		model.addColumn("NAN");
 		model.addColumn("Ordaintze Metodoa");
-		model.addRow(new Object[]{"Dato 1", "Dato 2", "Dato 3"});
-        model.addRow(new Object[]{"Dato 4", "Dato 5", "Dato 6"});
+		model.addRow(new Object[]{"1", "Duis", "Capipe", "12345678P", "Paypal"});
+		model.addRow(new Object[]{"2", "Victor", "Garralon", "32414425G", "Visa"});
+		model.addRow(new Object[]{"3", "Sergio", "Calvinho", "89204294K", "Visa"});
+		model.addRow(new Object[]{"4", "JeanCarlo", "Toro", "323486597", "Mastercard"});
+		/**/
+		table_1 = new JTable();
+		table_1.setBounds(26, 54, 381, 21);
+		contentPane.add(table_1);
+		DefaultTableModel model1 = new DefaultTableModel();
+		table_1.setModel(model1);
+		model1.addColumn("1");
+		model1.addColumn("2");
+		model1.addColumn("3");
+		model1.addColumn("4");
+		model1.addColumn("5");
+		model1.addRow(new Object[]{"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"});
         
 		
 	}
