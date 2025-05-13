@@ -73,7 +73,7 @@ public class reservaentradas extends JFrame {
 		DefaultTableModel model = new DefaultTableModel();
 		table.setModel(model);
 		model.addColumn("ID_SESION");
-		model.addColumn("Kepa");
+		model.addColumn("Izena");
 		model.addColumn("Abizena");
 		model.addColumn("Ordaintze Metodoa");
 		model.addRow(new Object[]{"Dato 1", "Dato 2", "Dato 3"});
