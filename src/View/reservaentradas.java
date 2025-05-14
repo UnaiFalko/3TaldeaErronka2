@@ -101,7 +101,7 @@ public class reservaentradas extends JFrame {
 		model1.addColumn("4");
 		model1.addColumn("5");
 		model1.addRow(new Object[]{"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"});
-        
+        	
 		
 	}
 }
