@@ -1,5 +1,10 @@
 package modelo;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class obra {
 
 	private int obraID;

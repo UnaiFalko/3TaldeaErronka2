@@ -1,6 +1,7 @@
 package APP;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import modelo.reserva;
 import org.w3c.dom.*;
@@ -12,7 +13,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class Main {
+
 	public static void main(String[] args) {
 	
 		       List<reserva> reservas = leerXML("C:\\Users\\1AW3-8\\Downloads\\reserva.xml");
@@ -72,4 +79,3 @@ public class Main {
 		        frame.setVisible(true);
 		    }
 		}
-

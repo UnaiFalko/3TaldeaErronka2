@@ -3,6 +3,11 @@ package modelo;
 import java.sql.Date;
 import java.sql.Time;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class irudikapena {
 
 	private int irudikapenID;
