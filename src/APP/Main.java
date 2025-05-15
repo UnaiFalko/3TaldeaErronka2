@@ -84,15 +84,3 @@ public class Main {
 		        frame.setVisible(true);
 		    }
 		}
-
-=======
-	public static void main(String[] args) throws SQLException {
-		ControladorUsuario controlador = new ControladorUsuario();
-		controlador.mostrarTodos();
-		Scanner sc = new Scanner(System.in);
-		do {
-			Menuaerakutsi();
-		}
-	}
-	
-}
