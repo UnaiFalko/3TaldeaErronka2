@@ -16,7 +16,7 @@ public class gestionusuarios extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private ErabiltzaileaGehitu erabiltzaileagehitu;
 	/**
 	 * Launch the application.
 	 */
@@ -48,6 +48,12 @@ public class gestionusuarios extends JFrame {
 		JButton btnNewButton = new JButton("Erabiltzailea Gehitu");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(erabiltzaileagehitu != null) {
+					erabiltzaileagehitu.setVisible(true);;
+				}else {
+					erabiltzaileagehitu = new ErabiltzaileaGehitu();
+					erabiltzaileagehitu.setVisible(true);
+				}
 			}
 		});
 		contentPane.add(btnNewButton);
