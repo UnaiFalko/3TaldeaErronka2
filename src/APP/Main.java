@@ -46,7 +46,7 @@ public class Main {
 	                    String metodoPago = elem.getElementsByTagName("metodoPago").item(0).getTextContent();
 	                    reserva r = new reserva(id_sesion, nombre, apellido, dni, metodoPago);
 	                    System.out.println(r);
-	                    reserva.add(r);
+	                    reservas.add(r);
 	                    System.out.println("ahora"+ reservas.size());
 		            }}
 

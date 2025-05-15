@@ -69,11 +69,7 @@ public class reserva {
 				+ ", metodoPago=" + metodoPago + "]";
 	}
 
-	public static void add(reserva r) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 	
 	
 	
