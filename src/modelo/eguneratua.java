@@ -1,18 +1,18 @@
 package modelo;
 
-/*
- * @author EkainKepaUnai  
- * @version 1.0
-*/
+	/*
+     * @author EkainKepaUnai  
+     * @version 1.0
+     */
 
 import javax.print.attribute.DateTimeSyntax;
 
 
-/*
- *
- */
+	/**
+	 * Atributuak deklaratzen duen metodo bat sortuko dugu
+	 */
 
-public class eguneratua {
+public class eguneratua  {
 
 	private int eguneraketaID;
 	private String taulakaltetua;
@@ -26,8 +26,12 @@ public class eguneratua {
 		super();
 	}
 	
-	/*
+	/**
 	 * Eguneratua konstruktorea zabaltzen du,aldagai guztiekaz
+	 * @param eguneraketaID
+	 * @param taulakaltetua
+	 * @param eguneraketaData
+	 * @param datuak
 	 */
 	public eguneratua(int eguneraketaID, String taulakaltetua, DateTimeSyntax eguneraketaData, String datuak) {
 		super();
@@ -37,36 +41,80 @@ public class eguneratua {
 		this.datuak = datuak;
 	}
 	
+	 /**
+	 * EguneraketaId-ren getterra
+	 * @return eguneraketaID
+	 */
+	
 	public int getEguneraketaID() {
 		return eguneraketaID;
 	}
 	
+	 /**
+	  * EguneraketaID-ren setterra
+	  * @param eguneraketaID
+	  */
 	public void setEguneraketaID(int eguneraketaID) {
 		this.eguneraketaID = eguneraketaID;
 	}
 	
+	/**
+	 * Taulakaltetua-ren getterra
+	 * @return taulakaltetua
+	 */
 	public String getTaulakaltetua() {
 		return taulakaltetua;
 	}
+	
+	/**
+	 * Taulakaltetua-ren setterra
+	 * @param taulakaltetua
+	 */
 	
 	public void setTaulakaltetua(String taulakaltetua) {
 		this.taulakaltetua = taulakaltetua;
 	}
 	
+	/**
+	 * EguneraketaDataren getterra
+	 * @return eguneraketaData
+	 */
+	
 	public DateTimeSyntax getEguneraketaData() {
 		return eguneraketaData;
 	}
+	
+	/**
+	 * EguneraketaData-ren setterra
+	 * @param eguneraketaData
+	 */
 	
 	public void setEguneraketaData(DateTimeSyntax eguneraketaData) {
 		this.eguneraketaData = eguneraketaData;
 	}
 	
+	/**
+	 * Datuak-ren getterra
+	 * @return datuak
+	 */
+	
 	public String getDatuak() {
 		return datuak;
 	}
+	
+	/**
+	 * Datuak-ren setterra
+	 * @param datuak
+	 */
+	
 	public void setDatuak(String datuak) {
 		this.datuak = datuak;
 	}
+	
+	/**
+	 * Klasearen datuak erakusten ditu
+	 */
+	
 	@Override
 	public String toString() {
 		return "eguneratua [eguneraketaID=" + eguneraketaID + ", taulakaltetua=" + taulakaltetua + ", eguneraketaData="
