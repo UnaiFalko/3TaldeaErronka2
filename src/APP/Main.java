@@ -3,14 +3,9 @@ package APP;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import Controller.ControladorUsuario;
-import modelo.pertsona;
 import modelo.reserva;
-
-import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import java.io.*;
-import org.w3c.dom.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;

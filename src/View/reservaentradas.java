@@ -10,9 +10,13 @@ import javax.swing.table.TableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileFilter;
 
 /*
  * @author EkainKepaUnai
@@ -40,6 +44,18 @@ public class reservaentradas extends JFrame {
 				}
 			}
 		});
+	}
+
+	public class FiltroDeXML extends FileFilter
+	{
+	   public boolean accept (File fichero)
+	   {
+	      return fichero.getName().endsWith(".xml");
+	   }
+	   public String getDescription()
+	   {
+	      return ("Filtro XML");
+	   }
 	}
 
 	/**
@@ -70,6 +86,10 @@ public class reservaentradas extends JFrame {
 		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU:");
 		btnErreserbakGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setFileFilter(new FiltroDeXML());
+				int seleccion = fileChooser.showOpenDialog(getParent());
+				
 			}
 		});
 		btnErreserbakGehitu.setBounds(259, 219, 167, 21);

@@ -73,12 +73,5 @@ public class reserva {
 		return "reserva [id_sesion=" + id_sesion + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
 				+ ", metodoPago=" + metodoPago + "]";
 	}
-
-
-	
-	
-	
-	
-	
 	
 }
