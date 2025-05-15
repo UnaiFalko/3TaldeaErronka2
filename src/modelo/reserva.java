@@ -9,50 +9,76 @@ import javax.print.attribute.DateTimeSyntax;
 
 public class reserva {
 
-	private int iradokizunID;
-	private String iradokizunNAN;
-	private DateTimeSyntax sorkuntzadata;
-	private String datuak;
+	private int id_sesion;
+	private String nombre;
+	private String apellido;
+	private String dni;
+	private String metodoPago;
 	
 	public reserva() {
 		super();
 	}
-	public reserva(int iradokizunID, String iradokizunNAN, DateTimeSyntax sorkuntzadata, String datuak) {
+
+	public reserva(int id_sesion, String nombre, String apellido, String dni, String metodoPago) {
 		super();
-		this.iradokizunID = iradokizunID;
-		this.iradokizunNAN = iradokizunNAN;
-		this.sorkuntzadata = sorkuntzadata;
-		this.datuak = datuak;
+		this.id_sesion = id_sesion;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
+		this.metodoPago = metodoPago;
 	}
-	public int getIradokizunID() {
-		return iradokizunID;
+
+	public int getId_sesion() {
+		return id_sesion;
 	}
-	public void setIradokizunID(int iradokizunID) {
-		this.iradokizunID = iradokizunID;
+
+	public void setId_sesion(int id_sesion) {
+		this.id_sesion = id_sesion;
 	}
-	public String getIradokizunNAN() {
-		return iradokizunNAN;
+
+	public String getNombre() {
+		return nombre;
 	}
-	public void setIradokizunNAN(String iradokizunNAN) {
-		this.iradokizunNAN = iradokizunNAN;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public DateTimeSyntax getSorkuntzadata() {
-		return sorkuntzadata;
+
+	public String getApellido() {
+		return apellido;
 	}
-	public void setSorkuntzadata(DateTimeSyntax sorkuntzadata) {
-		this.sorkuntzadata = sorkuntzadata;
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
-	public String getDatuak() {
-		return datuak;
+
+	public String getDni() {
+		return dni;
 	}
-	public void setDatuak(String datuak) {
-		this.datuak = datuak;
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
+
+	public String getMetodoPago() {
+		return metodoPago;
+	}
+
+	public void setMetodoPago(String metodoPago) {
+		this.metodoPago = metodoPago;
+	}
+
 	@Override
 	public String toString() {
-		return "reserva [iradokizunID=" + iradokizunID + ", iradokizunNAN=" + iradokizunNAN + ", sorkuntzadata="
-				+ sorkuntzadata + ", datuak=" + datuak + "]";
+		return "reserva [id_sesion=" + id_sesion + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
+				+ ", metodoPago=" + metodoPago + "]";
 	}
+
+
+	
+	
+	
+	
 	
 	
 }
