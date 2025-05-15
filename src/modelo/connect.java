@@ -8,6 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
 
 public class connect {
 

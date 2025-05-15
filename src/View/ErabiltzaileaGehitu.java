@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class ErabiltzaileaGehitu extends JFrame {
 
 	private static final long serialVersionUID = 1L;

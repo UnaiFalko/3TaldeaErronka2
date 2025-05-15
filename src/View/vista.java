@@ -4,6 +4,11 @@ import java.util.List;
 
 import modelo.pertsona;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class vista {
 	public void mostrar(List<pertsona> lista) {
 		if(lista == null) {

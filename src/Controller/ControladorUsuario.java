@@ -1,3 +1,4 @@
+
 package Controller;
 import modelo.connect;
 import modelo.pertsona;
@@ -5,9 +6,15 @@ import modelo.pertsona;
 
 import java.sql.SQLException;
 import java.util.List;
+
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class ControladorUsuario {
 
-	
+
 
 	    private connect con;
 	    private vista vista;
