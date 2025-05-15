@@ -1,5 +1,9 @@
 package modelo;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
 public class antzerkia {
 
 	private String cif;

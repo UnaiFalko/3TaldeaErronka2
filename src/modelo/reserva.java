@@ -2,6 +2,11 @@ package modelo;
 
 import javax.print.attribute.DateTimeSyntax;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class reserva {
 
 	private int iradokizunID;
