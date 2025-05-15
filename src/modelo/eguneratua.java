@@ -1,6 +1,16 @@
 package modelo;
 
+/*
+ * @author EkainKepaUnai  
+ * @version 1.0
+*/
+
 import javax.print.attribute.DateTimeSyntax;
+
+
+/*
+ *
+ */
 
 public class eguneratua {
 
@@ -8,9 +18,17 @@ public class eguneratua {
 	private String taulakaltetua;
 	private DateTimeSyntax eguneraketaData;
 	private String datuak;
+	
+	/*
+	 *Eguneratua konstruktorea zabaltzen du,aldagai barik
+	 */
 	public eguneratua() {
 		super();
 	}
+	
+	/*
+	 * Eguneratua konstruktorea zabaltzen du,aldagai guztiekaz
+	 */
 	public eguneratua(int eguneraketaID, String taulakaltetua, DateTimeSyntax eguneraketaData, String datuak) {
 		super();
 		this.eguneraketaID = eguneraketaID;
@@ -18,24 +36,31 @@ public class eguneratua {
 		this.eguneraketaData = eguneraketaData;
 		this.datuak = datuak;
 	}
+	
 	public int getEguneraketaID() {
 		return eguneraketaID;
 	}
+	
 	public void setEguneraketaID(int eguneraketaID) {
 		this.eguneraketaID = eguneraketaID;
 	}
+	
 	public String getTaulakaltetua() {
 		return taulakaltetua;
 	}
+	
 	public void setTaulakaltetua(String taulakaltetua) {
 		this.taulakaltetua = taulakaltetua;
 	}
+	
 	public DateTimeSyntax getEguneraketaData() {
 		return eguneraketaData;
 	}
+	
 	public void setEguneraketaData(DateTimeSyntax eguneraketaData) {
 		this.eguneraketaData = eguneraketaData;
 	}
+	
 	public String getDatuak() {
 		return datuak;
 	}
