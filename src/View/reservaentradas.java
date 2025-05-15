@@ -14,6 +14,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 public class reservaentradas extends JFrame {
 
 	private static final long serialVersionUID = 1L;
