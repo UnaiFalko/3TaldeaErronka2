@@ -4,9 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import APP.Main;
+import modelo.reserva;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -14,9 +19,11 @@ import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
+import java.awt.Toolkit;
 
 /*
  * @author EkainKepaUnai
@@ -29,10 +36,14 @@ public class reservaentradas extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
+	Main programa = new Main();
+	reserva paco  = new reserva();
+	
 
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -62,6 +73,7 @@ public class reservaentradas extends JFrame {
 	 * Create the frame.
 	 */
 	public reservaentradas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-25\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -89,7 +101,17 @@ public class reservaentradas extends JFrame {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setFileFilter(new FiltroDeXML());
 				int seleccion = fileChooser.showOpenDialog(getParent());
+				Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
+				String[] columnas = {"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"};
+				contentPane.add(table);
+				DefaultTableModel model = new DefaultTableModel(columnas,0);
+				table.setModel(model);
+				ArrayList<reserva> reservas = (ArrayList<reserva>) Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
+				for (reserva r : reservas) {
+				Object[] fila = {r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()};
+	            model.addRow(fila);
 				
+			}
 			}
 		});
 		btnErreserbakGehitu.setBounds(259, 219, 167, 21);
@@ -101,7 +123,7 @@ public class reservaentradas extends JFrame {
 		table.setModel(model);
 		
 		model.addColumn("ID_SESION");
-		model.addColumn("paco");
+		model.addColumn("Izena");
 		model.addColumn("Abizena");
 		model.addColumn("NAN");
 		model.addColumn("Ordaintze Metodoa");
