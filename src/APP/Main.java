@@ -47,9 +47,9 @@ public class Main {
 	                    String dni = elem.getElementsByTagName("dni").item(0).getTextContent();
 	                    String metodoPago = elem.getElementsByTagName("metodoPago").item(0).getTextContent();
 	                    reserva r = new reserva(id_sesion, nombre, apellido, dni, metodoPago);
-	                    System.out.println(r);
+	                   
 	                    reservas.add(r);
-	                    System.out.println("ahora"+ reservas.size());
+	                   
 		            }}
 
 		        } catch (Exception e) {
