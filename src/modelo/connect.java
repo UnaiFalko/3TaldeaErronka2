@@ -8,10 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * @author EkainKepaUnai
- * @version 1.0
- */
 
 public class connect {
 
@@ -53,6 +49,16 @@ public class connect {
         	return lista;
         	
 	    }
+
+	    
+	    public List<pertsona> dniak() throws SQLException{
+        	List<pertsona> lista = new ArrayList<>();
+        	Connection con = conexion();
+ 	        Statement st = con.createStatement();
+ 	       ResultSet resultSet = (ResultSet) st.executeQuery("SELECT dni FROM persona;");
+		return lista;
+	    }
+	    
 	    public void insertar_persona(String NAN, String izena, String abizena, String rola, String emaila, int telefonoa,String pasahitza) throws SQLException {
 
 	        // como hago para insertar los parametro de entrada a la tabla personas
@@ -85,10 +91,9 @@ public class connect {
 	            dbConnection.close();
 	        }
 	    }
-	    }
-}
+	
+	    }}
 
 	    
-	    
-
+	   
 
