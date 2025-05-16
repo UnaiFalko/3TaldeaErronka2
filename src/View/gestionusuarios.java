@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 /*
  * @author EkainKepaUnai
@@ -22,6 +23,7 @@ public class gestionusuarios extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ErabiltzaileaGehitu erabiltzaileagehitu;
+	private ErabiltzaileaEzabatu erabiltzaileaezabatu;
 	/**
 	 * Launch the application.
 	 */
@@ -42,6 +44,7 @@ public class gestionusuarios extends JFrame {
 	 * Create the frame.
 	 */
 	public gestionusuarios() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -64,6 +67,16 @@ public class gestionusuarios extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_3 = new JButton("Erabiltzailea Ezabatu");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(erabiltzaileaezabatu != null) {
+					erabiltzaileaezabatu.setVisible(true);;
+				}else {
+					erabiltzaileaezabatu = new ErabiltzaileaEzabatu();
+					erabiltzaileaezabatu.setVisible(true);
+				}
+			}
+		});
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_1 = new JButton("Erabiltzaileak Ikusi");
