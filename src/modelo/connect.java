@@ -59,22 +59,22 @@ public class connect {
 		return lista;
 	    }
 	    
-	    public void insertar_persona(String NAN, String izena, String abizena, String rola, String emaila, int telefonoa,String pasahitza) throws SQLException {
+	    public void pertsonaSortu(connect con, String NAN, String izena, String abizena, String rola, String emaila, int telefonoa,String pasahitza) throws SQLException {
 
-	        // como hago para insertar los parametro de entrada a la tabla personas
 	    Connection dbConnection = null;
 	    Statement statement = null;
 
-	    String insertTableSQL = "INSERT INTO persona "
-	            + "(DNI, nombre, apellido, rol, email, telefono,contraseña"
-	            + "VALUES"
-	            + "(" + NAN + "," + izena + "," + abizena + "," + rola + "," + emaila + "," + telefonoa +","+ pasahitza +  ")";
+//	    String insertTableSQL = "INSERT INTO persona "
+//	            + "(DNI, nombre, apellido, rol, email, telefono, contrasenya) "
+//	            + "VALUES "
+//	            + "(" + NAN + "," + izena + "," + abizena + "," + rola + "," + emaila + "," + telefonoa +","+ pasahitza +  ")";
 
+	    
+	    String insertTableSQL = "INSERT INTO persona (DNI, nombre, apellido, rol, email, telefono, contrasenya) " +
+	    	    "VALUES ('" + NAN + "', '" + izena + "', '" + abizena + "', '" + rola + "', '" + emaila + "', " + telefonoa + ", '" + pasahitza + "')";
 	    try {
 	        dbConnection = conexion();
 	        statement = dbConnection.createStatement();
-
-	        // execute insert SQL stetement
 	        statement.executeUpdate(insertTableSQL);
 
 	    } catch (SQLException e) {
@@ -92,8 +92,7 @@ public class connect {
 	        }
 	    }
 	
-	    }}
-
-	    
-	   
-
+	    }
+		
+			
+}
