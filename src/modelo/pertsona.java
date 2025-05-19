@@ -1,10 +1,10 @@
 package modelo;
 
 import java.sql.Connection;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import Modelo.Futbolista;
 
 /*
  * @author EkainKepaUnai

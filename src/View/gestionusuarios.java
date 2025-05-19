@@ -26,6 +26,7 @@ public class gestionusuarios extends JFrame {
 	private ErabiltzaileaGehitu erabiltzaileagehitu;
 	private ErabiltzaileaEzabatu erabiltzaileaezabatu;
 	private ErabiltzaileaEditatu erabiltzaileaeditatu;
+	public ErabiltzaileakIkusi erabiltzaileakikusi;
 	/**
 	 * Launch the application.
 	 */
@@ -85,29 +86,48 @@ public class gestionusuarios extends JFrame {
 				}
 			}
 		});
+		
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_1 = new JButton("Erabiltzaileak Ikusi");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(erabiltzaileakikusi != null) {
+					erabiltzaileakikusi.setVisible(true);;
+				}else {
+					try {
+						erabiltzaileakikusi = new ErabiltzaileakIkusi();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					erabiltzaileakikusi.setVisible(true);
+				}
+			}
+				
+		});
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Erabiltzaileak editatu");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		
-		if(erabiltzaileaeditatu != null) {
-			erabiltzaileaeditatu.setVisible(true);;
-		}else {
-			try {
-				erabiltzaileaeditatu = new ErabiltzaileaEditatu();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				if(erabiltzaileaeditatu != null) {
+					erabiltzaileaeditatu.setVisible(true);;
+				}else {
+					try {
+						erabiltzaileaeditatu = new ErabiltzaileaEditatu();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					erabiltzaileaeditatu.setVisible(true);
+				}
 			}
-			erabiltzaileaeditatu.setVisible(true);
-		}
+		});
+				
 		contentPane.add(btnNewButton_2);
 		
-	}});
+	
 
 }
 }

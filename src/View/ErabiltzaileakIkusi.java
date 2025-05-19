@@ -14,14 +14,20 @@ import modelo.connect;
 import modelo.pertsona;
 
 import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ErabiltzaileakIkusi extends JFrame {
 	connect conexion = new connect();
 	pertsona personita = new pertsona();
+	public Iragaziak iragaziak;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
 
 	/**
 	 * Launch the application.
@@ -74,6 +80,32 @@ public class ErabiltzaileakIkusi extends JFrame {
 		contentPane.add(table_1);
 		DefaultTableModel model1 = new DefaultTableModel();
 		table_1.setModel(model1);
+		
+		JButton btnNewButton = new JButton("Iragazi");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(iragaziak != null) {
+					iragaziak.setVisible(true);;
+				}else {
+					iragaziak = new Iragaziak();
+					iragaziak.setVisible(true);
+				}
+			}
+		});
+		btnNewButton.setBounds(402, 23, 85, 21);
+		contentPane.add(btnNewButton);
+		
+		btnNewButton_1 = new JButton("Segurtasun kopia egin");
+		btnNewButton_1.setBounds(293, 300, 159, 21);
+		contentPane.add(btnNewButton_1);
+		
+		btnNewButton_2 = new JButton("Segurtasun kopia igo");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(62, 300, 159, 21);
+		contentPane.add(btnNewButton_2);
 		model1.addColumn("1");
 		model1.addColumn("2");
 		model1.addColumn("3");
