@@ -127,7 +127,7 @@ public class irudikapena {
 	}
 	
 	/**
-	 * Klasearen datuak erakusten ditu
+	 * Klasearen datuak erakusten dituz
 	 */
 	@Override
 	public String toString() {
