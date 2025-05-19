@@ -5,7 +5,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import BBDD.FutbolistaConnect;
+import Modelo.Futbolista;
+import modelo.connect;
+import modelo.pertsona;
+
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
@@ -136,5 +146,34 @@ public class ErabiltzaileaGehitu extends JFrame {
 		JButton btnNewButton = new JButton("Gehitu");
 		btnNewButton.setBounds(170, 242, 85, 21);
 		contentPane.add(btnNewButton);
+		
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				pertsona per = new pertsona();
+				per.setNAN(txtJJ.getText());
+				per.setIzena(textField.getText());
+				per.setAbizena(textField_1.getText());
+				per.setRola(textField_2.getText());
+				per.setEmaila(textField_3.getText());
+				per.setTelefonoa(Integer.parseInt(textField_4.getText()));
+				per.setPasahitza(textField_5.getText());
+			
+				
+				
+				connect Con=new connect();
+				System.out.println(txtJJ.getText());
+//				per.setNAN(txtJJ.getText());
+				//System.out.println(per.setNAN(txtJJ.getText()));
+				try {
+					Con.pertsonaSortu(Con, txtJJ.getText(), textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText());
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+				System.exit(0);
+			}
+		});
 	}
 }
