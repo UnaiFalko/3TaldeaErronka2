@@ -17,6 +17,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -33,12 +35,13 @@ public class ErabiltzaileaEditatu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	public JTextField textField;
+	public JTextField textField_1;
+	public JTextField textField_2;
+	public JTextField textField_3;
+	public JTextField textField_4;
+	public JTextField textField_5;
+	public JComboBox<String> comboBox;
 
 	/**
 	 * Launch the application.
@@ -148,17 +151,46 @@ public class ErabiltzaileaEditatu extends JFrame {
 		btnNewButton.setBounds(170, 242, 85, 21);
 		contentPane.add(btnNewButton);
 		
-		JComboBox<String> comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(94, 40, 96, 21);
+		
 		contentPane.add(comboBox);
 		List<pertsona> lista = conexion.getAll();
 		for (pertsona p : lista) {
 			comboBox.addItem(p.getNAN());
 		}
-		
-		
 		conexion.getAll().get(conexion.getAll().size()-2);
 		
 		
-	        }
+	
+	
+	
+	btnNewButton.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			
+			pertsona per = new pertsona();
+			per.setIzena(textField.getText());
+			per.setAbizena(textField_1.getText());
+			per.setRola(textField_2.getText());
+			per.setEmaila(textField_3.getText());
+			per.setTelefonoa(Integer.parseInt(textField_4.getText()));
+			per.setPasahitza(textField_5.getText());
+			
+		
+			
+			
+			connect Con=new connect();
+//			per.setNAN(txtJJ.getText());
+			//System.out.println(per.setNAN(txtJJ.getText()));
+			try {
+				Con.pertsonaeditatu(textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText());
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			System.exit(0);
+		}
+	});
+}
 }

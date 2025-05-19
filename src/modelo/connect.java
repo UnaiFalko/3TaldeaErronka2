@@ -2,11 +2,14 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import View.ErabiltzaileaEditatu;
 
 
 public class connect {
@@ -33,7 +36,7 @@ public class connect {
         	Connection con = conexion();
  	        Statement st = con.createStatement();
  	       ResultSet resultSet = (ResultSet) st.executeQuery("SELECT * FROM persona;");
- 	        
+ 	       
  	        
  	        while (resultSet.next()) {
  	            String NAN = resultSet.getString("DNI");
@@ -63,12 +66,6 @@ public class connect {
 
 	    Connection dbConnection = null;
 	    Statement statement = null;
-
-//	    String insertTableSQL = "INSERT INTO persona "
-//	            + "(DNI, nombre, apellido, rol, email, telefono, contrasenya) "
-//	            + "VALUES "
-//	            + "(" + NAN + "," + izena + "," + abizena + "," + rola + "," + emaila + "," + telefonoa +","+ pasahitza +  ")";
-
 	    
 	    String insertTableSQL = "INSERT INTO persona (DNI, nombre, apellido, rol, email, telefono, contrasenya) " +
 	    	    "VALUES ('" + NAN + "', '" + izena + "', '" + abizena + "', '" + rola + "', '" + emaila + "', " + telefonoa + ", '" + pasahitza + "')";
@@ -92,7 +89,45 @@ public class connect {
 	        }
 	    }
 	
+	    
 	    }
+	    
+	    public void pertsonaeditatu(String izena, String abizena, String rola, String emaila, int telefonoa, String pasahitza) throws SQLException {
+	    Connection dbConnection = null;
+	    Statement statement = null;
+	    pertsona per = new pertsona();
+	    ErabiltzaileaEditatu ered = new ErabiltzaileaEditatu();
+	    
+	    String erabilitakodnia;
+	    erabilitakodnia = ered.comboBox.getSelectedItem().toString();
+	    for (int i= 0; i<9999; i++) {
+	    if (erabilitakodnia = per.getNAN(i)   ) {
+	    String insertTableSQL = "INSERT INTO persona (DNI, nombre, apellido, rol, email, telefono, contrasenya) " +
+	    	    "VALUES ('" + izena + "', '" + abizena + "', '" + rola + "', '" + emaila + "', " + telefonoa + ", '" + pasahitza + "')";
+	    try {
+	        dbConnection = conexion();
+	        statement = dbConnection.createStatement();
+	        statement.executeUpdate(insertTableSQL);
+
+	    } catch (SQLException e) {
+
+	        System.out.println(e.getMessage());
+
+	    } finally {
+
+	        if (statement != null) {
+	            statement.close();
+	        }
+
+	        if (dbConnection != null) {
+	            dbConnection.close();
+	        }
+	    }
+	    }
+	    
+	    }
+	    }
+		
 		
 			
 }
