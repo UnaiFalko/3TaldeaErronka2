@@ -30,7 +30,8 @@ import java.awt.event.ActionEvent;
 
 public class ErabiltzaileaEditatu extends JFrame {
 	
-	connect conexion = new connect();
+	
+	public connect conexion = new connect();
 	pertsona personita = new pertsona();
 
 	private static final long serialVersionUID = 1L;
@@ -42,6 +43,8 @@ public class ErabiltzaileaEditatu extends JFrame {
 	public JTextField textField_4;
 	public JTextField textField_5;
 	public JComboBox<String> comboBox;
+	public String erabilitakodnia;
+	
 
 	/**
 	 * Launch the application.
@@ -153,6 +156,14 @@ public class ErabiltzaileaEditatu extends JFrame {
 		
 		comboBox = new JComboBox();
 		comboBox.setBounds(94, 40, 96, 21);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				    erabilitakodnia = comboBox.getSelectedItem().toString();
+				    System.out.println(erabilitakodnia);
+			} 
+		} 
+		); 
 		
 		contentPane.add(comboBox);
 		List<pertsona> lista = conexion.getAll();
@@ -176,15 +187,12 @@ public class ErabiltzaileaEditatu extends JFrame {
 			per.setEmaila(textField_3.getText());
 			per.setTelefonoa(Integer.parseInt(textField_4.getText()));
 			per.setPasahitza(textField_5.getText());
-			
-		
-			
-			
+
 			connect Con=new connect();
 //			per.setNAN(txtJJ.getText());
 			//System.out.println(per.setNAN(txtJJ.getText()));
 			try {
-				Con.pertsonaeditatu(textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText());
+				Con.pertsonaeditatu(textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText(), erabilitakodnia);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
