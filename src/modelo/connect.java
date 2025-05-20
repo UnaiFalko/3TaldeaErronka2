@@ -124,7 +124,38 @@ public class connect {
 
 				if (dbConnection != null) {
 					dbConnection.close();
-				}
+				}}
 			}
 
+			
+			public void pertsonaezabatu(String dniberria) throws SQLException {
+				Connection dbConnection = null;
+				Statement statement = null;
+				pertsona per = new pertsona();
+				ErabiltzaileaEditatu ered = new ErabiltzaileaEditatu();
+				
+				ered.erabilitakodnia = dniberria; 
+
+					String deleteTableSQL = "DELETE FROM persona WHERE DNI = '" + dniberria + "'";
+					
+					try {
+						dbConnection = conexion();
+						statement = dbConnection.createStatement();
+						statement.executeUpdate(deleteTableSQL);
+					
+					}
+					 catch (SQLException e) {
+
+						System.out.println(e.getMessage());
+
+					} finally {
+
+						if (statement != null) {
+							statement.close();
+						}
+
+						if (dbConnection != null) {
+							dbConnection.close();
+						}
+					}
 }}

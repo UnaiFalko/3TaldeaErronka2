@@ -25,15 +25,10 @@ public class ErabiltzaileaEzabatu extends JFrame {
 	
 	connect conexion = new connect();
 	pertsona personita = new pertsona();
+	public String erabilitakodnia;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -65,9 +60,9 @@ public class ErabiltzaileaEzabatu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("NAN");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(24, 40, 48, 19);
+		JLabel lblNewLabel = new JLabel("      NAN");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel.setBounds(165, 118, 90, 21);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Erabiltzaileak Ezabatu");
@@ -75,85 +70,43 @@ public class ErabiltzaileaEzabatu extends JFrame {
 		lblNewLabel_1.setBounds(134, 10, 167, 13);
 		contentPane.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(94, 70, 96, 19);
-		contentPane.add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(94, 99, 96, 19);
-		contentPane.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(94, 128, 96, 19);
-		contentPane.add(textField_2);
-		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(94, 157, 96, 19);
-		contentPane.add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(94, 184, 96, 19);
-		contentPane.add(textField_4);
-		
-		JLabel lblIzena = new JLabel("Izena");
-		lblIzena.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIzena.setBounds(24, 69, 48, 19);
-		contentPane.add(lblIzena);
-		
-		JLabel lblAbizena = new JLabel("Abizena");
-		lblAbizena.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAbizena.setBounds(24, 98, 48, 19);
-		contentPane.add(lblAbizena);
-		
-		JLabel lblRola = new JLabel("Rola");
-		lblRola.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblRola.setBounds(24, 127, 48, 19);
-		contentPane.add(lblRola);
-		
-		JLabel lblEmaila = new JLabel("Emaila");
-		lblEmaila.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEmaila.setBounds(24, 156, 48, 19);
-		contentPane.add(lblEmaila);
-		
-		JLabel lblTelefonoa = new JLabel("Telefonoa");
-		lblTelefonoa.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTelefonoa.setBounds(24, 183, 60, 19);
-		contentPane.add(lblTelefonoa);
-		
-		JLabel lblPasahitza = new JLabel("Pasahitza");
-		lblPasahitza.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblPasahitza.setBounds(24, 212, 60, 19);
-		contentPane.add(lblPasahitza);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(94, 213, 96, 19);
-		contentPane.add(textField_5);
-		
-		JButton btnNewButton = new JButton("Editatu");
+		JButton btnNewButton = new JButton("EZABATU");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				connect Con=new connect();
+				try {
+					Con.pertsonaezabatu(erabilitakodnia);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+				System.exit(0);
+				
 			}
 		});
-		btnNewButton.setBounds(170, 242, 85, 21);
+		btnNewButton.setBounds(170, 202, 85, 21);
 		contentPane.add(btnNewButton);
 		
 		JComboBox<String> comboBox = new JComboBox();
-		comboBox.setBounds(94, 40, 96, 21);
+		comboBox.setBounds(165, 149, 96, 21);
+		
 		contentPane.add(comboBox);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				    erabilitakodnia = comboBox.getSelectedItem().toString();
+			} 
+		} 
+		); 
 		List<pertsona> lista = conexion.getAll();
 		for (pertsona p : lista) {
 			comboBox.addItem(p.getNAN());
 		}
-		
-		
 		conexion.getAll().get(conexion.getAll().size()-2);
 		
 		
 	        }
+	
+	
 }
