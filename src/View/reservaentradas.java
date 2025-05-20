@@ -8,8 +8,21 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.sql.Connection;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import APP.Main;
+import modelo.connect;
 import modelo.reserva;
 
 import javax.swing.JLabel;
@@ -19,11 +32,17 @@ import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
 import java.awt.Toolkit;
+import java.sql.Statement;
 
 /*
  * @author EkainKepaUnai
@@ -37,13 +56,12 @@ public class reservaentradas extends JFrame {
 	private JTable table;
 	private JTable table_1;
 	Main programa = new Main();
-	reserva paco  = new reserva();
-	
+	reserva paco = new reserva();
 
 	/**
 	 * Launch the application.
 	 */
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -57,23 +75,27 @@ public class reservaentradas extends JFrame {
 		});
 	}
 
-	public class FiltroDeXML extends FileFilter
-	{
-	   public boolean accept (File fichero)
-	   {
-	      return fichero.getName().endsWith(".xml");
-	   }
-	   public String getDescription()
-	   {
-	      return ("Filtro XML");
-	   }
+	public class FiltroDeXML extends FileFilter {
+		public boolean accept(File fichero) {
+			return fichero.getName().endsWith(".xml");
+		}
+
+		public String getDescription() {
+			return ("Filtro XML");
+		}
 	}
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @throws TransformerException
+	 * @throws SQLException
+	 * @throws DOMException
+	 * @throws ParserConfigurationException
 	 */
-	public reservaentradas() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-25\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
+	public reservaentradas() throws TransformerException, DOMException, SQLException, ParserConfigurationException {
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("C:\\Users\\1AW3-25\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -81,20 +103,32 @@ public class reservaentradas extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblEn = new JLabel("Entradak Erreserbatu");
 		lblEn.setFont(new Font("Georgia", Font.PLAIN, 20));
 		lblEn.setBounds(10, 24, 200, 21);
 		contentPane.add(lblEn);
-		
+
 		JButton btnNewButton = new JButton("SAIOAK DESKARGATU");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					connect.saioakdeskargatu();
+				} catch (ParserConfigurationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (TransformerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setBounds(10, 219, 167, 21);
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU:");
 		btnErreserbakGehitu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -102,16 +136,17 @@ public class reservaentradas extends JFrame {
 				fileChooser.setFileFilter(new FiltroDeXML());
 				int seleccion = fileChooser.showOpenDialog(getParent());
 				Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
-				String[] columnas = {"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"};
+				String[] columnas = { "ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa" };
 				contentPane.add(table);
-				DefaultTableModel model = new DefaultTableModel(columnas,0);
+				DefaultTableModel model = new DefaultTableModel(columnas, 0);
 				table.setModel(model);
-				ArrayList<reserva> reservas = (ArrayList<reserva>) Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
+				ArrayList<reserva> reservas = (ArrayList<reserva>) Main
+						.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
 				for (reserva r : reservas) {
-				Object[] fila = {r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()};
-	            model.addRow(fila);
-				
-			}
+					Object[] fila = { r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago() };
+					model.addRow(fila);
+
+				}
 			}
 		});
 		btnErreserbakGehitu.setBounds(259, 219, 167, 21);
@@ -121,16 +156,16 @@ public class reservaentradas extends JFrame {
 		contentPane.add(table);
 		DefaultTableModel model = new DefaultTableModel();
 		table.setModel(model);
-		
+
 		model.addColumn("ID_SESION");
 		model.addColumn("Izena");
 		model.addColumn("Abizena");
 		model.addColumn("NAN");
 		model.addColumn("Ordaintze Metodoa");
-		model.addRow(new Object[]{"1", "Kepa", "Capipe", "12345678P", "Paypal"});
-		model.addRow(new Object[]{"2", "Unai", "Garralon", "32414425G", "Visa"});
-		model.addRow(new Object[]{"3", "Ekain", "Calvinho", "89204294K", "Visa"});
-		model.addRow(new Object[]{"4", "JeanCarlo", "Toro", "323486597", "Mastercard"});
+		model.addRow(new Object[] { "1", "Kepa", "Capipe", "12345678P", "Paypal" });
+		model.addRow(new Object[] { "2", "Unai", "Garralon", "32414425G", "Visa" });
+		model.addRow(new Object[] { "3", "Ekain", "Calvinho", "89204294K", "Visa" });
+		model.addRow(new Object[] { "4", "JeanCarlo", "Toro", "323486597", "Mastercard" });
 		/**/
 		table_1 = new JTable();
 		table_1.setBounds(26, 54, 381, 21);
@@ -142,8 +177,8 @@ public class reservaentradas extends JFrame {
 		model1.addColumn("3");
 		model1.addColumn("4");
 		model1.addColumn("5");
-		model1.addRow(new Object[]{"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"});
-        
+		model1.addRow(new Object[] { "ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa" });
+
 		
 	}
 }
