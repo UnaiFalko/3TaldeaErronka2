@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -24,6 +25,8 @@ public class gestionusuarios extends JFrame {
 	private JPanel contentPane;
 	private ErabiltzaileaGehitu erabiltzaileagehitu;
 	private ErabiltzaileaEzabatu erabiltzaileaezabatu;
+	private ErabiltzaileaEditatu erabiltzaileaeditatu;
+	public ErabiltzaileakIkusi erabiltzaileakikusi;
 	/**
 	 * Launch the application.
 	 */
@@ -42,8 +45,9 @@ public class gestionusuarios extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public gestionusuarios() {
+	public gestionusuarios() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -72,18 +76,58 @@ public class gestionusuarios extends JFrame {
 				if(erabiltzaileaezabatu != null) {
 					erabiltzaileaezabatu.setVisible(true);;
 				}else {
-					erabiltzaileaezabatu = new ErabiltzaileaEzabatu();
+					try {
+						erabiltzaileaezabatu = new ErabiltzaileaEzabatu();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					erabiltzaileaezabatu.setVisible(true);
 				}
 			}
 		});
+		
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_1 = new JButton("Erabiltzaileak Ikusi");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(erabiltzaileakikusi != null) {
+					erabiltzaileakikusi.setVisible(true);;
+				}else {
+					try {
+						erabiltzaileakikusi = new ErabiltzaileakIkusi();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					erabiltzaileakikusi.setVisible(true);
+				}
+			}
+				
+		});
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Erabiltzaileak editatu");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(erabiltzaileaeditatu != null) {
+					erabiltzaileaeditatu.setVisible(true);;
+				}else {
+					try {
+						erabiltzaileaeditatu = new ErabiltzaileaEditatu();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					erabiltzaileaeditatu.setVisible(true);
+				}
+			}
+		});
+				
 		contentPane.add(btnNewButton_2);
-	}
+		
+	
 
+}
 }

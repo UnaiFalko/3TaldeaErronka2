@@ -2,12 +2,11 @@ package View;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import BBDD.FutbolistaConnect;
-import Modelo.Futbolista;
 import modelo.connect;
 import modelo.pertsona;
 
