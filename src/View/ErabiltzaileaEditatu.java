@@ -160,7 +160,6 @@ public class ErabiltzaileaEditatu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				    erabilitakodnia = comboBox.getSelectedItem().toString();
-				    System.out.println(erabilitakodnia);
 			} 
 		} 
 		); 
@@ -189,8 +188,6 @@ public class ErabiltzaileaEditatu extends JFrame {
 			per.setPasahitza(textField_5.getText());
 
 			connect Con=new connect();
-//			per.setNAN(txtJJ.getText());
-			//System.out.println(per.setNAN(txtJJ.getText()));
 			try {
 				Con.pertsonaeditatu(textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText(), erabilitakodnia);
 			} catch (SQLException e1) {

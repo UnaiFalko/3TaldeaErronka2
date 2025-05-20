@@ -98,53 +98,6 @@ public class connect {
 		Statement statement = null;
 		pertsona per = new pertsona();
 		ErabiltzaileaEditatu ered = new ErabiltzaileaEditatu();
-=======
-	    }
-	    
-	    public void pertsonaSortu(connect con, String NAN, String izena, String abizena, String rola, String emaila, int telefonoa,String pasahitza) throws SQLException {
-
-	    Connection dbConnection = null;
-	    Statement statement = null;
-
-//	    String insertTableSQL = "INSERT INTO persona "
-//	            + "(DNI, nombre, apellido, rol, email, telefono, contrasenya) "
-//	            + "VALUES "
-//	            + "(" + NAN + "," + izena + "," + abizena + "," + rola + "," + emaila + "," + telefonoa +","+ pasahitza +  ")";
-
-	    
-	    String insertTableSQL = "INSERT INTO persona (DNI, nombre, apellido, rol, email, telefono, contrasenya) " +
-	    	    "VALUES ('" + NAN + "', '" + izena + "', '" + abizena + "', '" + rola + "', '" + emaila + "', " + telefonoa + ", '" + pasahitza + "')";
-	    try {
-	        dbConnection = conexion();
-	        statement = dbConnection.createStatement();
-	        statement.executeUpdate(insertTableSQL);
-
-	    } catch (SQLException e) {
-
-	        System.out.println(e.getMessage());
-
-	    } finally {
-
-	        if (statement != null) {
-	            statement.close();
-	        }
-
-	        if (dbConnection != null) {
-	            dbConnection.close();
-	        }
-	    }
-	
-	    }
-		public PreparedStatement prepareStatement(String query) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		public void close() {
-			// TODO Auto-generated method stub
-			
-		}
-	    
-
 		
 		ered.erabilitakodnia = dniberria; 
 
@@ -171,7 +124,38 @@ public class connect {
 
 				if (dbConnection != null) {
 					dbConnection.close();
-				}
+				}}
 			}
 
+			
+			public void pertsonaezabatu(String dniberria) throws SQLException {
+				Connection dbConnection = null;
+				Statement statement = null;
+				pertsona per = new pertsona();
+				ErabiltzaileaEditatu ered = new ErabiltzaileaEditatu();
+				
+				ered.erabilitakodnia = dniberria; 
+
+					String deleteTableSQL = "DELETE FROM persona WHERE DNI = '" + dniberria + "'";
+					
+					try {
+						dbConnection = conexion();
+						statement = dbConnection.createStatement();
+						statement.executeUpdate(deleteTableSQL);
+					
+					}
+					 catch (SQLException e) {
+
+						System.out.println(e.getMessage());
+
+					} finally {
+
+						if (statement != null) {
+							statement.close();
+						}
+
+						if (dbConnection != null) {
+							dbConnection.close();
+						}
+					}
 }}
