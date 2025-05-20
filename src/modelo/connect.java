@@ -1,5 +1,11 @@
 package modelo;
 
+import java.io.File;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,8 +16,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import View.ErabiltzaileaEditatu;
+
 
 public class connect {
 
@@ -98,53 +116,6 @@ public class connect {
 		Statement statement = null;
 		pertsona per = new pertsona();
 		ErabiltzaileaEditatu ered = new ErabiltzaileaEditatu();
-=======
-	    }
-	    
-	    public void pertsonaSortu(connect con, String NAN, String izena, String abizena, String rola, String emaila, int telefonoa,String pasahitza) throws SQLException {
-
-	    Connection dbConnection = null;
-	    Statement statement = null;
-
-//	    String insertTableSQL = "INSERT INTO persona "
-//	            + "(DNI, nombre, apellido, rol, email, telefono, contrasenya) "
-//	            + "VALUES "
-//	            + "(" + NAN + "," + izena + "," + abizena + "," + rola + "," + emaila + "," + telefonoa +","+ pasahitza +  ")";
-
-	    
-	    String insertTableSQL = "INSERT INTO persona (DNI, nombre, apellido, rol, email, telefono, contrasenya) " +
-	    	    "VALUES ('" + NAN + "', '" + izena + "', '" + abizena + "', '" + rola + "', '" + emaila + "', " + telefonoa + ", '" + pasahitza + "')";
-	    try {
-	        dbConnection = conexion();
-	        statement = dbConnection.createStatement();
-	        statement.executeUpdate(insertTableSQL);
-
-	    } catch (SQLException e) {
-
-	        System.out.println(e.getMessage());
-
-	    } finally {
-
-	        if (statement != null) {
-	            statement.close();
-	        }
-
-	        if (dbConnection != null) {
-	            dbConnection.close();
-	        }
-	    }
-	
-	    }
-		public PreparedStatement prepareStatement(String query) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		public void close() {
-			// TODO Auto-generated method stub
-			
-		}
-	    
-
 		
 		ered.erabilitakodnia = dniberria; 
 
@@ -174,4 +145,103 @@ public class connect {
 				}
 			}
 
-}}
+}
+	public Object[][] getTableData() throws SQLException {
+		Object[][] data = new Object[this.getAll().size()][7];
+		
+		for(int i = 0; i < getAll().size(); i ++) {
+			
+			data[i][0] = getAll().get(i).getNAN();
+			data[i][1] = getAll().get(i).getIzena();
+			data[i][2] = getAll().get(i).getAbizena();
+			data[i][3] = getAll().get(i).getRola();
+			data[i][4] = getAll().get(i).getEmaila();
+			data[i][5] = getAll().get(i).getTelefonoa();
+			data[i][6] = getAll().get(i).getPasahitza();
+		}
+		
+		return data;
+	}
+	public List<pertsona> kargatuSegurtasunKopia(String ruta) throws FileNotFoundException, IOException {
+		List<pertsona> lista = new ArrayList<>();
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta)) ) {
+			lista = (List<pertsona>) ois.readObject();
+			System.out.println("Copia de seguridad cargada");
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return lista;
+	}
+	
+	
+	public static void main(String[] args) {
+		
+	       List<reserva> reservas = leerXML("C:\\Users\\1AW3-8\\Downloads\\reserva.xml");
+	        mostrarTabla(reservas);
+	    }
+
+	    public static List<reserva> leerXML(String ruta) {
+	        List<reserva> reservas = new ArrayList<>();
+
+	        try {
+	            File archivoXML = new File(ruta);
+	            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	            Document doc = dBuilder.parse(archivoXML);
+	            doc.getDocumentElement().normalize();
+	            Element root = doc.getDocumentElement();
+	            NodeList nList = doc.getElementsByTagName("reserva");
+	            for (int i = 0; i < nList.getLength(); i++) {
+	            Node node = nList.item(i); 
+	            if (node.getNodeType() == Node.ELEMENT_NODE) {
+	            	Element elem = (Element) node;
+	            	int id_sesion = Integer.parseInt(elem.getElementsByTagName("id_sesion").item(0).getTextContent());
+                 String nombre = elem.getElementsByTagName("nombre").item(0).getTextContent();
+                 String apellido = elem.getElementsByTagName("apellido").item(0).getTextContent();
+                 String dni = elem.getElementsByTagName("dni").item(0).getTextContent();
+                 String metodoPago = elem.getElementsByTagName("metodoPago").item(0).getTextContent();
+                 reserva r = new reserva(id_sesion, nombre, apellido, dni, metodoPago);
+                 System.out.println(r);
+                 reservas.add(r);
+                 System.out.println("ahora"+ reservas.size());
+	            }}
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	       
+	        return reservas;
+	    }
+	    
+	    public static void mostrarTabla(List<reserva> reservas) {
+	        String[] columnas = {"id_sesion", "nombre", "apellido", "dni", "metodoPago"};
+	        DefaultTableModel modelo = new DefaultTableModel(columnas, 0
+	        		);
+
+	        for (reserva r : reservas) {
+	            Object[] fila = {r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()};
+	            modelo.addRow(fila);
+	        }
+
+	        JTable tabla = new JTable(modelo);
+	        JScrollPane scrollPane = new JScrollPane(tabla);
+
+	        JFrame frame = new JFrame("Datos del XML");
+	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        frame.add(scrollPane);
+	        frame.setSize(900, 300);
+	        frame.setVisible(true);
+	    }
+	    public List<reserva> parsearXML(File archivo) {
+		    List<reserva> reservas = new ArrayList<>();
+		    try {
+		        JAXBContext context = JAXBContext.newInstance(ListaReservas.class);
+		        Unmarshaller unmarshaller = context.createUnmarshaller();
+		        ListaReservas lista = (ListaReservas) unmarshaller.unmarshal(archivo);
+		        reservas = lista.getReservas();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+		    return reservas;
+		}
+}

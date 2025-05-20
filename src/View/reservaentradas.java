@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import APP.Main;
+import modelo.connect;
 import modelo.reserva;
 
 import javax.swing.JLabel;
@@ -20,9 +20,12 @@ import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.Toolkit;
 
 /*
@@ -36,8 +39,9 @@ public class reservaentradas extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
-	Main programa = new Main();
 	reserva paco  = new reserva();
+	connect conexion = new connect();
+	private DefaultTableModel model;
 	
 
 	/**
@@ -95,31 +99,43 @@ public class reservaentradas extends JFrame {
 		btnNewButton.setBounds(10, 219, 167, 21);
 		contentPane.add(btnNewButton);
 		
+		
+		
 		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU:");
 		btnErreserbakGehitu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setFileFilter(new FiltroDeXML());
-				int seleccion = fileChooser.showOpenDialog(getParent());
-				Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
-				String[] columnas = {"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"};
-				contentPane.add(table);
-				DefaultTableModel model = new DefaultTableModel(columnas,0);
-				table.setModel(model);
-				ArrayList<reserva> reservas = (ArrayList<reserva>) Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
-				for (reserva r : reservas) {
-				Object[] fila = {r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()};
-	            model.addRow(fila);
-				
-			}
-			}
+		    public void actionPerformed(ActionEvent e) {
+		    	
+		        JFileChooser fileChooser = new JFileChooser();
+		        fileChooser.setDialogTitle("Aukeratu XML fitxategia");
+		        fileChooser.setFileFilter(new FileNameExtensionFilter("XML fitxategiak", "xml"));
+
+		        int seleccion = fileChooser.showOpenDialog(null);
+
+		        if (seleccion == JFileChooser.APPROVE_OPTION) {
+		            File archivo = fileChooser.getSelectedFile();
+
+		            
+		            List<reserva> reservas = conexion.parsearXML(archivo);  // usa tu método parsearXML
+
+		            for (reserva r : reservas) {
+		                Object[] fila = {
+		                    r.getId_sesion(),
+		                    r.getNombre(),
+		                    r.getApellido(),
+		                    r.getDni(),
+		                    r.getMetodoPago()
+		                };
+		                model.addRow(fila);  // Usa el DefaultTableModel ya existente
+		            }
+		        }
+		    }
 		});
+
 		btnErreserbakGehitu.setBounds(259, 219, 167, 21);
 		contentPane.add(btnErreserbakGehitu);
 		table = new JTable();
 		table.setBounds(26, 70, 381, 129);
 		contentPane.add(table);
-		DefaultTableModel model = new DefaultTableModel();
 		table.setModel(model);
 		
 		model.addColumn("ID_SESION");
@@ -131,7 +147,8 @@ public class reservaentradas extends JFrame {
 		model.addRow(new Object[]{"2", "Unai", "Garralon", "32414425G", "Visa"});
 		model.addRow(new Object[]{"3", "Ekain", "Calvinho", "89204294K", "Visa"});
 		model.addRow(new Object[]{"4", "JeanCarlo", "Toro", "323486597", "Mastercard"});
-		/**/
+		
+		
 		table_1 = new JTable();
 		table_1.setBounds(26, 54, 381, 21);
 		contentPane.add(table_1);

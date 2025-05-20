@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 public class ErabiltzaileakIkusi extends JFrame {
 	connect conexion = new connect();
 	pertsona personita = new pertsona();
+	List lista = conexion.getAll();
 	public Iragaziak iragaziak;
 
 	private static final long serialVersionUID = 1L;
@@ -71,10 +72,10 @@ public class ErabiltzaileakIkusi extends JFrame {
 		model.addColumn("Emaila");
 		model.addColumn("Telefonoa");
 		model.addColumn("Pasahitza");
-		model.addRow(new Object[]{});
-		model.addRow(new Object[]{});
-		model.addRow(new Object[]{});
-		
+		Object [][] data = conexion.getTableData();
+		for(Object[] fila : data) {
+			model.addRow(fila);
+		}
 		JTable table_1 = new JTable();
 		table_1.setBounds(26, 54, 462, 21);
 		contentPane.add(table_1);
@@ -115,12 +116,6 @@ public class ErabiltzaileakIkusi extends JFrame {
 		model1.addColumn("6");
 		model1.addRow(new Object[]{"NAN", "Izena", "Abizena", "Rola", "Emaila", "Telefonoa", "Pasahitza"});
 		
-		List<pertsona> lista = conexion.getAll();
-		for (pertsona p : lista) {
-			System.out.println(lista);
-		}
-		
-		
-		conexion.getAll().get(conexion.getAll().size()-2);
 	}
 }
+
