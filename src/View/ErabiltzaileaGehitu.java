@@ -162,9 +162,6 @@ public class ErabiltzaileaGehitu extends JFrame {
 				
 				
 				connect Con=new connect();
-				System.out.println(txtJJ.getText());
-//				per.setNAN(txtJJ.getText());
-				//System.out.println(per.setNAN(txtJJ.getText()));
 				try {
 					Con.pertsonaSortu(Con, txtJJ.getText(), textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText());
 				} catch (SQLException e1) {

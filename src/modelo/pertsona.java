@@ -46,7 +46,7 @@ public class pertsona {
 
 
 	public void setNAN(String nAN) {
-		NAN = nAN;
+		this.NAN = nAN;
 	}
 
 
