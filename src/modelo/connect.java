@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,12 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import View.ErabiltzaileaEditatu;
 
 public class connect {
 
-	private Connection conexion() {
+	public static Connection conexion() {
 		String url = "jdbc:mysql://localhost:3306/reservaentradas";
 		String username = "root";
 		String password = "";
@@ -158,4 +170,70 @@ public class connect {
 							dbConnection.close();
 						}
 					}
-}}
+					
+					
+}
+			public static void saioakdeskargatu () throws ParserConfigurationException, SQLException, TransformerException {
+				// Nombre del archivo XML de salida
+				String xmlFile = "descargadatos.xml";
+
+				// Crear el documento XML
+				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+				DocumentBuilder db = dbf.newDocumentBuilder();
+				Document doc = db.newDocument();
+
+				// Crear el elemento raíz
+				Element root = doc.createElement("Representaciones");
+				doc.appendChild(root);
+
+				// Establecer la conexión a la base de datos
+				try {
+					Connection con = conexion();
+					Statement st = con.createStatement();
+					String query = "SELECT * FROM representacion";
+					ResultSet rs = st.executeQuery(query);
+
+
+
+						while (rs.next()) {
+							// Crear un elemento "usuario" para cada fila
+							Element idRepresentacion = doc.createElement("idRepresentacion");
+							root.appendChild(idRepresentacion);
+
+							// Crear elementos para los atributos
+							Element cifteatro = doc.createElement("cifteatro");
+							cifteatro.appendChild(doc.createTextNode(rs.getString("cifteatro")));
+							idRepresentacion.appendChild(cifteatro);
+
+							Element idobra = doc.createElement("idobra");
+							idobra.appendChild(doc.createTextNode(rs.getString("idobra")));
+							idRepresentacion.appendChild(idobra);
+
+							Element hora = doc.createElement("hora");
+							idobra.appendChild(doc.createTextNode(rs.getString("hora")));
+							idRepresentacion.appendChild(hora);
+
+							Element dia = doc.createElement("dia");
+							idobra.appendChild(doc.createTextNode(rs.getString("dia")));
+							idRepresentacion.appendChild(dia);
+							
+							Element aforo = doc.createElement("aforo");
+							idobra.appendChild(doc.createTextNode(rs.getString("aforo")));
+							idRepresentacion.appendChild(aforo);
+					}
+
+					// Escribir el documento XML a un archivo
+					TransformerFactory transformerFactory = TransformerFactory.newInstance();
+					Transformer transformer = transformerFactory.newTransformer();
+					DOMSource source = new DOMSource(doc);
+					StreamResult result = new StreamResult(new File(xmlFile));
+					transformer.transform(source, result);
+
+					System.out.println("Archivo XML creado: " + xmlFile);
+
+				} finally {
+				}
+			}
+			
+
+}
