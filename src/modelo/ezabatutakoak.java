@@ -1,12 +1,15 @@
 package modelo;
 
-import javax.print.attribute.DateTimeSyntax;
-
 /*
  * @author EkainKepaUnai
  * @version 1.0
  */
 
+import javax.print.attribute.DateTimeSyntax;
+
+  /**
+	 * Atributuak deklaratzen duen metodo bat sortuko dugu,kasu honetan ezabatutakoak 
+	 */
 public class ezabatutakoak {
 
 	private int ezabatutakoakID;

@@ -9,7 +9,7 @@ import javax.print.attribute.DateTimeSyntax;
 
 
 	/**
-	 * Atributuak deklaratzen duen metodo bat sortuko dugu
+	 * Atributuak deklaratzen duen metodo bat sortuko dugu,kasu honetan eguneratua 
 	 */
 
 public class eguneratua  {
