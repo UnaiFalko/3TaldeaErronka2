@@ -253,7 +253,6 @@ public class connect {
 	            reservaStmt.setString(2, apellido);
 	            reservaStmt.setString(3, dni);
 	            reservaStmt.setString(4, metodoPago);
-	            reservaStmt.setInt(5, idRepresentacion);
 	            reservaStmt.executeUpdate();
 
 	            reservaStmt.close();
