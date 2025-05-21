@@ -135,7 +135,7 @@ public class ErabiltzaileaEzabatu extends JFrame {
 		textField_5.setBounds(94, 213, 96, 19);
 		contentPane.add(textField_5);
 		
-		JButton btnNewButton = new JButton("Editatu");
+		JButton btnNewButton = new JButton("Ezabatu");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

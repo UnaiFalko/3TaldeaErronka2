@@ -163,56 +163,10 @@ public class connect {
 		
 		return data;
 	}
-	public List<pertsona> kargatuSegurtasunKopia(String ruta) throws FileNotFoundException, IOException {
-		List<pertsona> lista = new ArrayList<>();
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta)) ) {
-			lista = (List<pertsona>) ois.readObject();
-			System.out.println("Copia de seguridad cargada");
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return lista;
-	}
 	
 	
-	public static void main(String[] args) {
-		
-	       List<reserva> reservas = leerXML("C:\\Users\\1AW3-8\\Downloads\\reserva.xml");
-	        mostrarTabla(reservas);
-	    }
-
-	    public static List<reserva> leerXML(String ruta) {
-	        List<reserva> reservas = new ArrayList<>();
-
-	        try {
-	            File archivoXML = new File(ruta);
-	            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	            Document doc = dBuilder.parse(archivoXML);
-	            doc.getDocumentElement().normalize();
-	            Element root = doc.getDocumentElement();
-	            NodeList nList = doc.getElementsByTagName("reserva");
-	            for (int i = 0; i < nList.getLength(); i++) {
-	            Node node = nList.item(i); 
-	            if (node.getNodeType() == Node.ELEMENT_NODE) {
-	            	Element elem = (Element) node;
-	            	int id_sesion = Integer.parseInt(elem.getElementsByTagName("id_sesion").item(0).getTextContent());
-                 String nombre = elem.getElementsByTagName("nombre").item(0).getTextContent();
-                 String apellido = elem.getElementsByTagName("apellido").item(0).getTextContent();
-                 String dni = elem.getElementsByTagName("dni").item(0).getTextContent();
-                 String metodoPago = elem.getElementsByTagName("metodoPago").item(0).getTextContent();
-                 reserva r = new reserva(id_sesion, nombre, apellido, dni, metodoPago);
-                 System.out.println(r);
-                 reservas.add(r);
-                 System.out.println("ahora"+ reservas.size());
-	            }}
-
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	       
-	        return reservas;
-	    }
+	
+	
 	    //ErabiltzaileakIkusi
 	    public static void mostrarTabla(List<reserva> reservas) {
 	        String[] columnas = {"id_sesion", "nombre", "apellido", "dni", "metodoPago"};
@@ -293,7 +247,7 @@ public class connect {
 	            }
 
 	           
-	            String insertReserva = "INSERT INTO reserva (nombre, apellido, dni, metodoPago, reservaRepresentacion) VALUES (?, ?, ?, ?, ?)";
+	            String insertReserva = "INSERT INTO reserva (nombre, apellido, dni, metodoPago) VALUES (?, ?, ?, ?)";
 	            PreparedStatement reservaStmt = conexion.prepareStatement(insertReserva);
 	            reservaStmt.setString(1, nombre);
 	            reservaStmt.setString(2, apellido);
@@ -302,7 +256,6 @@ public class connect {
 	            reservaStmt.setInt(5, idRepresentacion);
 	            reservaStmt.executeUpdate();
 
-	            // Cierre
 	            reservaStmt.close();
 	            checkStmt.close();
 	            conexion.close();
@@ -314,5 +267,15 @@ public class connect {
 	            e.printStackTrace();
 	        }
 	    }
+	    public List<pertsona> kargatuSegurtasunKopia(String ruta) throws FileNotFoundException, IOException {
+			List<pertsona> lista = new ArrayList<>();
+			try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ruta)) ) {
+				lista = (List<pertsona>) ois.readObject();
+				System.out.println("Copia de seguridad cargada");
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return lista;
+		}
 	    
 }

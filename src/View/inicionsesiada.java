@@ -94,7 +94,7 @@ public class inicionsesiada extends JFrame {
 				        String izena = textField.getText();
 
 				        try {
-				            Connection conexion = connect.conexion(); // tu clase connect debe tener este método
+				            Connection conexion = connect.conexion();
 
 				            String sql = "SELECT rol FROM persona WHERE nombre = ? ";
 				            PreparedStatement stmt = conexion.prepareStatement(sql);
