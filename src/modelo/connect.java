@@ -17,6 +17,7 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -233,15 +234,82 @@ public class connect {
 	        frame.setVisible(true);
 	    }
 	    public List<reserva> parsearXML(File archivo) {
-		    List<reserva> reservas = new ArrayList<>();
-		    try {
-		        JAXBContext context = JAXBContext.newInstance(ListaReservas.class);
-		        Unmarshaller unmarshaller = context.createUnmarshaller();
-		        ListaReservas lista = (ListaReservas) unmarshaller.unmarshal(archivo);
-		        reservas = lista.getReservas();
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		    }
-		    return reservas;
-		}
+	        List<reserva> reservas = new ArrayList<>();
+	        try {
+	            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	            Document doc = dBuilder.parse(archivo);
+	            doc.getDocumentElement().normalize();
+
+	            NodeList nList = doc.getElementsByTagName("reserva");
+
+	            for (int i = 0; i < nList.getLength(); i++) {
+	                Node nodo = nList.item(i);
+
+	                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+	                    Element elem = (Element) nodo;
+
+	                    int id_sesion = Integer.parseInt(elem.getElementsByTagName("id_sesion").item(0).getTextContent());
+	                    String nombre = elem.getElementsByTagName("nombre").item(0).getTextContent();
+	                    String apellido = elem.getElementsByTagName("apellido").item(0).getTextContent();
+	                    String dni = elem.getElementsByTagName("dni").item(0).getTextContent();
+	                    String metodoPago = elem.getElementsByTagName("metodoPago").item(0).getTextContent();
+	                    reserva r = new reserva(id_sesion, nombre, apellido, dni, metodoPago);
+
+	                    reservas.add(new reserva(id_sesion, nombre, apellido, dni, metodoPago));
+	                }
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return reservas;
+	    }
+	    public static void insertarReserva(int idRepresentacion, String apellido, String dni, String metodoPago, String nombre) {
+	    	String url = "jdbc:mysql://localhost:3306/reservaentradas";
+			String username = "root";
+			String password = "";
+			Connection conexion = null;
+
+			try {
+				conexion = DriverManager.getConnection(url, username, password);
+	            // Paso 1: Comprobar si el DNI ya existe en persona
+	            String checkDNI = "SELECT * FROM persona WHERE DNI = ?";
+	            PreparedStatement checkStmt = conexion.prepareStatement(checkDNI);
+	            checkStmt.setString(1, dni);
+	            ResultSet rs = checkStmt.executeQuery();
+
+	            // Paso 2: Si no existe, lo insertamos
+	            if (!rs.next()) {
+	                String insertPersona = "INSERT INTO persona (DNI, nombre, apellido) VALUES (?, ?, ?)";
+	                PreparedStatement insertStmt = conexion.prepareStatement(insertPersona);
+	                insertStmt.setString(1, dni);
+	                insertStmt.setString(2, nombre);
+	                insertStmt.setString(3, apellido);
+	                insertStmt.executeUpdate();
+	                insertStmt.close();
+	            }
+
+	            // Paso 3: Insertar en reserva
+	            String insertReserva = "INSERT INTO reserva (nombre, apellido, dni, metodoPago, reservaRepresentacion) VALUES (?, ?, ?, ?, ?)";
+	            PreparedStatement reservaStmt = conexion.prepareStatement(insertReserva);
+	            reservaStmt.setString(1, nombre);
+	            reservaStmt.setString(2, apellido);
+	            reservaStmt.setString(3, dni);
+	            reservaStmt.setString(4, metodoPago);
+	            reservaStmt.setInt(5, idRepresentacion);
+	            reservaStmt.executeUpdate();
+
+	            // Cierre
+	            reservaStmt.close();
+	            checkStmt.close();
+	            conexion.close();
+
+	            JOptionPane.showMessageDialog(null, "Reserva insertada correctamente.");
+
+	        } catch (Exception e) {
+	            JOptionPane.showMessageDialog(null, "Error al insertar en la base de datos: " + e.getMessage());
+	            e.printStackTrace();
+	        }
+	    }
+	    
 }

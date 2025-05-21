@@ -13,12 +13,17 @@ import modelo.connect;
 import modelo.reserva;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -52,8 +57,9 @@ public class reservaentradas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					reservaentradas frame = new reservaentradas();
-					frame.setVisible(true);
+ 
+					reservaentradas ventana = new reservaentradas();
+					ventana.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -105,48 +111,41 @@ public class reservaentradas extends JFrame {
 		btnErreserbakGehitu.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		    	
-		        JFileChooser fileChooser = new JFileChooser();
-		        fileChooser.setDialogTitle("Aukeratu XML fitxategia");
-		        fileChooser.setFileFilter(new FileNameExtensionFilter("XML fitxategiak", "xml"));
+		    	JFileChooser fileChooser = new JFileChooser();
+		    	fileChooser.setDialogTitle("XML");
+		    	fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos XML", "xml"));
+		    	fileChooser.setAcceptAllFileFilterUsed(false);
 
-		        int seleccion = fileChooser.showOpenDialog(null);
+		    	int seleccion = fileChooser.showOpenDialog(null);
+		    	if (seleccion == JFileChooser.APPROVE_OPTION) {
+		    	    File archivoXML = fileChooser.getSelectedFile();
 
-		        if (seleccion == JFileChooser.APPROVE_OPTION) {
-		            File archivo = fileChooser.getSelectedFile();
+		    	    List<reserva> reservas = conexion.parsearXML(archivoXML);
 
-		            
-		            List<reserva> reservas = conexion.parsearXML(archivo);  // usa tu método parsearXML
+		    	    DefaultTableModel model = (DefaultTableModel) table.getModel();
+		    	    
 
-		            for (reserva r : reservas) {
-		                Object[] fila = {
-		                    r.getId_sesion(),
-		                    r.getNombre(),
-		                    r.getApellido(),
-		                    r.getDni(),
-		                    r.getMetodoPago()
-		                };
-		                model.addRow(fila);  // Usa el DefaultTableModel ya existente
-		            }
-		        }
+		    	    for (reserva r : reservas) {
+		    	        Object[] fila = {
+		    	            r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()
+		    	        };
+		    	        model.addRow(fila);
+		    	    
+		    	   modelo.connect.insertarReserva(r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago());
+		    	    
+		    	}
+		    	}
 		    }
 		});
 
 		btnErreserbakGehitu.setBounds(259, 219, 167, 21);
 		contentPane.add(btnErreserbakGehitu);
+		String[] columnas = {"ID Sesion","Nombre","Apellido","DNI","MetodoPago"};
+		DefaultTableModel model = new DefaultTableModel(columnas,0);
 		table = new JTable();
 		table.setBounds(26, 70, 381, 129);
-		contentPane.add(table);
 		table.setModel(model);
-		
-		model.addColumn("ID_SESION");
-		model.addColumn("Izena");
-		model.addColumn("Abizena");
-		model.addColumn("NAN");
-		model.addColumn("Ordaintze Metodoa");
-		model.addRow(new Object[]{"1", "Kepa", "Capipe", "12345678P", "Paypal"});
-		model.addRow(new Object[]{"2", "Unai", "Garralon", "32414425G", "Visa"});
-		model.addRow(new Object[]{"3", "Ekain", "Calvinho", "89204294K", "Visa"});
-		model.addRow(new Object[]{"4", "JeanCarlo", "Toro", "323486597", "Mastercard"});
+		contentPane.add(table);
 		
 		
 		table_1 = new JTable();
