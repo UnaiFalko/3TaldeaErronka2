@@ -34,7 +34,7 @@ import View.ErabiltzaileaEditatu;
 
 public class connect {
 
-	private Connection conexion() {
+	public static Connection conexion() {
 		String url = "jdbc:mysql://localhost:3306/reservaentradas";
 		String username = "root";
 		String password = "";
@@ -213,7 +213,7 @@ public class connect {
 	       
 	        return reservas;
 	    }
-	    
+	    //ErabiltzaileakIkusi
 	    public static void mostrarTabla(List<reserva> reservas) {
 	        String[] columnas = {"id_sesion", "nombre", "apellido", "dni", "metodoPago"};
 	        DefaultTableModel modelo = new DefaultTableModel(columnas, 0
@@ -233,6 +233,7 @@ public class connect {
 	        frame.setSize(900, 300);
 	        frame.setVisible(true);
 	    }
+	    
 	    public List<reserva> parsearXML(File archivo) {
 	        List<reserva> reservas = new ArrayList<>();
 	        try {
@@ -264,6 +265,8 @@ public class connect {
 	        }
 	        return reservas;
 	    }
+	    
+	    //Reserva gehitu Datu Basera
 	    public static void insertarReserva(int idRepresentacion, String apellido, String dni, String metodoPago, String nombre) {
 	    	String url = "jdbc:mysql://localhost:3306/reservaentradas";
 			String username = "root";
@@ -272,13 +275,13 @@ public class connect {
 
 			try {
 				conexion = DriverManager.getConnection(url, username, password);
-	            // Paso 1: Comprobar si el DNI ya existe en persona
+	            
 	            String checkDNI = "SELECT * FROM persona WHERE DNI = ?";
 	            PreparedStatement checkStmt = conexion.prepareStatement(checkDNI);
 	            checkStmt.setString(1, dni);
 	            ResultSet rs = checkStmt.executeQuery();
 
-	            // Paso 2: Si no existe, lo insertamos
+	            
 	            if (!rs.next()) {
 	                String insertPersona = "INSERT INTO persona (DNI, nombre, apellido) VALUES (?, ?, ?)";
 	                PreparedStatement insertStmt = conexion.prepareStatement(insertPersona);
@@ -289,7 +292,7 @@ public class connect {
 	                insertStmt.close();
 	            }
 
-	            // Paso 3: Insertar en reserva
+	           
 	            String insertReserva = "INSERT INTO reserva (nombre, apellido, dni, metodoPago, reservaRepresentacion) VALUES (?, ?, ?, ?, ?)";
 	            PreparedStatement reservaStmt = conexion.prepareStatement(insertReserva);
 	            reservaStmt.setString(1, nombre);
@@ -304,10 +307,10 @@ public class connect {
 	            checkStmt.close();
 	            conexion.close();
 
-	            JOptionPane.showMessageDialog(null, "Reserva insertada correctamente.");
+	            JOptionPane.showMessageDialog(null, "Erreserbatuta.");
 
 	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Error al insertar en la base de datos: " + e.getMessage());
+	            JOptionPane.showMessageDialog(null, "Errorea Erreserbatzen: " + e.getMessage());
 	            e.printStackTrace();
 	        }
 	    }
