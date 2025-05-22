@@ -2,10 +2,10 @@ package modelo;
 
 import javax.print.attribute.DateTimeSyntax;
 
-/*
- * @author EkainKepaUnai
- * @version 1.0
+/**
+ * Atributuak deklaratzen duen metodo bat sortuko dugu
  */
+
 
 public class ezabatutakoak {
 
@@ -22,10 +22,10 @@ public class ezabatutakoak {
 	}
 	/**
 	 * Konstruktorea aldagai guztiekaz zabaltzen du
-	 * @param ezabatutakoakID
-	 * @param taulakaltetua
-	 * @param ezabatutakoData
-	 * @param datuak
+	 * @param ezabatutakoakID Ezabatutakoak klasearen atributua
+	 * @param taulakaltetua Ezabatutakoak klasearen atributua
+	 * @param ezabatutakoData Ezabatutakoak klasearen atributua
+	 * @param datuak Ezabatutakoak klasearen atributua
 	 */
 	public ezabatutakoak(int ezabatutakoakID, String taulakaltetua, DateTimeSyntax ezabatutakoData, String datuak) {
 		super();
@@ -43,7 +43,7 @@ public class ezabatutakoak {
 	}
 	/**
 	 * EzabatutakoakId-aren setterra
-	 * @param ezabatutakoakID
+	 * @param ezabatutakoakID Ezabatutakoak klasearen atributua
 	 */
 	public void setEzabatutakoakID(int ezabatutakoakID) {
 		this.ezabatutakoakID = ezabatutakoakID;
@@ -57,7 +57,7 @@ public class ezabatutakoak {
 	}
 	/**
 	 * TaulaKaltetua-ren setterra
-	 * @param taulakaltetua
+	 * @param taulakaltetua Ezabatutakoak klasearen atributua
 	 */
 	public void setTaulakaltetua(String taulakaltetua) {
 		this.taulakaltetua = taulakaltetua;
@@ -71,7 +71,7 @@ public class ezabatutakoak {
 	}
 	/**
 	 * EzabatutakoData-ren setterra
-	 * @param ezabatutakoData
+	 * @param ezabatutakoData Ezabatutakoak klasearen atributua
 	 */
 	public void setEzabatutakoData(DateTimeSyntax ezabatutakoData) {
 		this.ezabatutakoData = ezabatutakoData;
@@ -85,7 +85,7 @@ public class ezabatutakoak {
 	}
 	/**
 	 * Datuak-ren setterra
-	 * @param datuak
+	 * @param datuak Ezabatutakoak klasearen atributua
 	 */
 	public void setDatuak(String datuak) {
 		this.datuak = datuak;

@@ -21,9 +21,9 @@ public class antzerkia {
 	
 	/**
 	 * Konstruktorea aldagai guztiegaz sortzen ditu
-	 * @param cif
-	 * @param izena
-	 * @param helbidea
+	 * @param cif Antzerkia klasearen atributua
+	 * @param izena Antzerkia klasearen atributua
+	 * @param helbidea Antzerkia klasearen atributua
 	 */
 	
 	public antzerkia(String cif, String izena, String helbidea) {
@@ -44,7 +44,7 @@ public class antzerkia {
 	
 	/**
 	 * CIF-ren setterra
-	 * @param cif
+	 * @param cif Antzerkia klasearen atributua
 	 */
 	
 	public void setCif(String cif) {
@@ -61,7 +61,7 @@ public class antzerkia {
 	
 	/**
 	 * Izena-ren setterra
-	 * @param izena
+	 * @param izena Antzerkia klasearen atributua
 	 */
 	
 	public void setIzena(String izena) {
@@ -78,7 +78,7 @@ public class antzerkia {
 	
 	/**
 	 * Helbidea-ren setterra
-	 * @param helbidea
+	 * @param helbidea Antzerkia klasearen atributua
 	 */
 	
 	public void setHelbidea(String helbidea) {
