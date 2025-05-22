@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.connect;
+import Controller.connect;
 import modelo.pertsona;
 
 import javax.swing.JTable;

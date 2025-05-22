@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.connect;
+import Controller.connect;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

@@ -1,4 +1,4 @@
-package modelo;
+package Controller;
 
 import java.io.File;
 
@@ -30,6 +30,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import View.ErabiltzaileaEditatu;
+import modelo.pertsona;
+import modelo.reserva;
 
 
 public class connect {
@@ -235,16 +237,6 @@ public class connect {
 	            checkStmt.setString(1, dni);
 	            ResultSet rs = checkStmt.executeQuery();
 
-	            
-	            if (!rs.next()) {
-	                String insertPersona = "INSERT INTO persona (DNI, nombre, apellido) VALUES (?, ?, ?)";
-	                PreparedStatement insertStmt = conexion.prepareStatement(insertPersona);
-	                insertStmt.setString(1, dni);
-	                insertStmt.setString(2, nombre);
-	                insertStmt.setString(3, apellido);
-	                insertStmt.executeUpdate();
-	                insertStmt.close();
-	            }
 
 	           
 	            String insertReserva = "INSERT INTO reserva (nombre, apellido, dni, metodoPago) VALUES (?, ?, ?, ?)";
@@ -276,5 +268,13 @@ public class connect {
 			}
 			return lista;
 		}
-	    
+	    public static void reservakIkusi() throws SQLException {
+	    	connect conexion;
+	    	List<reserva> lista = new ArrayList<>();
+			Connection con = conexion();
+			Statement st = con.createStatement();
+			ResultSet resultSet = (ResultSet) st.executeQuery("SELECT * FROM reserva;");
+
+	    }
 }
+	    

@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import modelo.connect;
+import Controller.connect;
 import modelo.reserva;
 
 import javax.swing.JLabel;
@@ -24,6 +24,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -81,8 +82,9 @@ public class reservaentradas extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public reservaentradas() {
+	public reservaentradas() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-25\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -131,8 +133,9 @@ public class reservaentradas extends JFrame {
 		    	        };
 		    	        model.addRow(fila);
 		    	    
-		    	   modelo.connect.insertarReserva(r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago());
+		    	   Controller.connect.insertarReserva(r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago());
 		    	    
+		    	   
 		    	}
 		    	}
 		    }
@@ -146,7 +149,7 @@ public class reservaentradas extends JFrame {
 		table.setBounds(26, 70, 381, 129);
 		table.setModel(model);
 		contentPane.add(table);
-		
+		connect.reservakIkusi();
 		
 		table_1 = new JTable();
 		table_1.setBounds(26, 54, 381, 21);
