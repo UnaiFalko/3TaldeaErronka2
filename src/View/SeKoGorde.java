@@ -17,7 +17,7 @@ public class SeKoGorde extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -33,7 +33,7 @@ public class SeKoGorde extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Frame-a sortzen du
 	 */
 	public SeKoGorde() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

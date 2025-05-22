@@ -28,7 +28,7 @@ public class gestionusuarios extends JFrame {
 	private ErabiltzaileaEditatu erabiltzaileaeditatu;
 	public ErabiltzaileakIkusi erabiltzaileakikusi;
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,8 +44,8 @@ public class gestionusuarios extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * @throws SQLException 
+	 * Frame-a sortzen du
+	 * @throws SQLException  salbuespenak kontrolatzeko erabiliko dugu
 	 */
 	public gestionusuarios() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
