@@ -127,6 +127,8 @@ public class gestionusuarios extends JFrame {
 				
 		contentPane.add(btnNewButton_2);
 		
+		
+		
 	
 
 }

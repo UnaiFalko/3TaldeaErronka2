@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.connect;
+import Controller.connect;
 import modelo.pertsona;
 
 import java.awt.Toolkit;

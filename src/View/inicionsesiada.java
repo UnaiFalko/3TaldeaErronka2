@@ -6,11 +6,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.connect;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 
 /*
@@ -24,6 +32,7 @@ public class inicionsesiada extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	
 
 	/**
 	 * Launch the application.
@@ -82,8 +91,43 @@ public class inicionsesiada extends JFrame {
 		btnNewButton.setFont(new Font("Georgia", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			}
-		});
+				        String izena = textField.getText();
+
+				        try {
+				            Connection conexion = connect.conexion();
+
+				            String sql = "SELECT rol FROM persona WHERE nombre = ? ";
+				            PreparedStatement stmt = conexion.prepareStatement(sql);
+				            stmt.setString(1, izena);
+
+				            ResultSet rs = stmt.executeQuery();
+
+				            if (rs.next()) {
+				                String rol = rs.getString("rol");
+
+				                if (rol.equalsIgnoreCase("VIP")) {
+				                    new gestionusuarios().setVisible(true);
+				                } else {
+				                    new reservaentradas().setVisible(true);
+				                }
+
+				                dispose();
+
+				            } else {
+				                JOptionPane.showMessageDialog(null, "Erabiltzailea okerra");
+				            }
+
+				            rs.close();
+				            stmt.close();
+				            conexion.close();
+
+				        } catch (Exception ex) {
+				            ex.printStackTrace();
+				            JOptionPane.showMessageDialog(null, "Errorea konexioan");
+				        }
+				    }
+				});
+
 		btnNewButton.setBounds(156, 201, 127, 25);
 		contentPane.add(btnNewButton);
 	}
