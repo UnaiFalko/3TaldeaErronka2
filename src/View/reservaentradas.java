@@ -63,7 +63,7 @@ public class reservaentradas extends JFrame {
 	connect conexion = new connect();
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 
 	public static void main(String[] args) {
@@ -90,12 +90,12 @@ public class reservaentradas extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Frame-a sortzen du
 	 * 
-	 * @throws TransformerException
-	 * @throws SQLException
-	 * @throws DOMException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerException salbuespenak kontrolatzeko erabiliko dugu
+	 * @throws SQLException salbuespenak kontrolatzeko erabiliko dugu
+	 * @throws DOMException salbuespenak kontrolatzeko erabiliko dugu
+	 * @throws ParserConfigurationException salbuespenak kontrolatzeko erabiliko dugu
 	 */
 	public reservaentradas() throws TransformerException, DOMException, SQLException, ParserConfigurationException {
 		setIconImage(Toolkit.getDefaultToolkit()

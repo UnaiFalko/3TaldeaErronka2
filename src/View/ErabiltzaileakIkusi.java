@@ -32,7 +32,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 	private JButton btnNewButton_2;
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,8 +48,8 @@ public class ErabiltzaileakIkusi extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * @throws SQLException 
+	 * Frame-a sortzen du
+	 * @throws SQLException  salbuespenak kontrolatzeko erabiliko dugu
 	 */
 	public ErabiltzaileakIkusi() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

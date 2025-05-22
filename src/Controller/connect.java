@@ -44,6 +44,10 @@ import java.io.ObjectInputStream;
 
 public class connect {
 
+	/**
+	 * Datubaseagaz konexioa hartzen duen metodoa da hau,beharrezkoa da.
+	 * @return conexion
+	 */
 	public static Connection conexion() {
 		String url = "jdbc:mysql://localhost:3306/reservaentradas";
 		String username = "root";
@@ -60,7 +64,12 @@ public class connect {
 
 		return conexion;
 	}
-
+	
+	/**
+	 * Pertsona klasearen atributu guztiak hartzen duen metodoa da
+	 * @return lista
+	 * @throws SQLException SQL-ren errorea
+	 */
 	public List<pertsona> getAll() throws SQLException {
 		List<pertsona> lista = new ArrayList<>();
 		Connection con = conexion();
@@ -81,7 +90,11 @@ public class connect {
 		return lista;
 
 	}
-
+	/**
+	 * Pertsonatik dniak aukeratzeko behar den metodoa da hau
+	 * @return lista
+	 * @throws SQLException SQL-ren errorea
+	 */
 	public List<pertsona> dniak() throws SQLException {
 		List<pertsona> lista = new ArrayList<>();
 		Connection con = conexion();
@@ -89,7 +102,18 @@ public class connect {
 		ResultSet resultSet = (ResultSet) st.executeQuery("SELECT dni FROM persona;");
 		return lista;
 	}
-
+		/**
+		 * Pertsona berri bat sortzeko behar den metodoa da hau
+		 * @param con conexiño motako atributua da
+		 * @param NAN Pertsonak-en String motako atributua
+		 * @param izena Pertsonak-en String motako atributua
+		 * @param abizena Pertsonak-en String motako atributua
+		 * @param rola Pertsonak-en String motako atributua
+		 * @param emaila Pertsonak-en String motako atributua
+		 * @param telefonoa Pertsonak-en Int motako atributua
+		 * @param pasahitza Pertsonak-en String motako atributua
+		 * @throws SQLException SQLak errorea ematen badu detektatzeko erabiltzen dena
+		 */
 	public void pertsonaSortu(connect con, String NAN, String izena, String abizena, String rola, String emaila,
 			int telefonoa, String pasahitza) throws SQLException {
 
@@ -120,7 +144,17 @@ public class connect {
 		}
 
 	}
-
+	/**
+	 * Pertsona editatzeko erabiltzen den metodoa
+	 * @param izena Pertsonak-en String motako atributua
+	 * @param abizena Pertsonak-en String motako atributua
+	 * @param rola Pertsonak-en String motako atributua
+	 * @param emaila Pertsonak-en String motako atributua
+	 * @param telefonoa Pertsonak-en String motako atributua
+	 * @param pasahitza Pertsonak-en String motako atributua
+	 * @param dniberria DNI berria gordetzeko erabiltzen den atributua
+	 * @throws SQLException SQLak errorea ematen badu detektatzeko erabiltzen dena
+	 */
 	public void pertsonaeditatu(String izena, String abizena, String rola, String emaila, int telefonoa,
 			String pasahitza, String dniberria) throws SQLException {
 		Connection dbConnection = null;
@@ -156,7 +190,11 @@ public class connect {
 				}}
 			}
 
-			
+			/**
+			 * Pertsona klasea ezabatzeko erabiltzen den metodoa
+			 * @param dniberria DNI berria gordetzeko erabiltzen den atributua
+			 * @throws SQLException SQLak errorea ematen badu detektatzeko erabiltzen dena		
+			 */
 			public void pertsonaezabatu(String dniberria) throws SQLException {
 				Connection dbConnection = null;
 				Statement statement = null;
@@ -189,7 +227,13 @@ public class connect {
 					}
 					
 					
-}
+}	
+			/**
+			 * XMl-a exportatzekoe erabiltzen den metodoa
+			 * @throws ParserConfigurationException metodoak eman ahal duen errore bat
+			 * @throws SQLException SQLak errorea ematen badu detektatzeko erabiltzen dena		
+			 * @throws TransformerException metodoak eman ahal duen errore bat
+			 */
 			public static void saioakdeskargatu () throws ParserConfigurationException, SQLException, TransformerException {
 				// Nombre del archivo XML de salida
 				String xmlFile = "descargadatos.xml";
@@ -251,8 +295,14 @@ public class connect {
 				} finally {
 				}
 			}
-			
-			 //Reserva gehitu Datu Basera
+			/**
+			 * Reserva datubasera gehitzeko erabiltzen den metodoa da hau
+			 * @param idRepresentacion irudikapena klaseko int motako bariablea
+			 * @param apellido Pertsona klaseko String motako bariablea
+			 * @param dni Pertsona klaseko String motako bariablea
+			 * @param metodoPago Reserva klaseko String motako bariablea
+			 * @param nombre Pertsona klaseko String motako bariablea
+			 */
 		    public static void insertarReserva(int idRepresentacion, String apellido, String dni, String metodoPago, String nombre) {
 		    	String url = "jdbc:mysql://localhost:3306/reservaentradas";
 				String username = "root";
@@ -288,7 +338,11 @@ public class connect {
 		            e.printStackTrace();
 		        }
 		    }
-		    
+		    /**
+		     * XML archivoa detektatzeko erabiltzen den metodoa da hau
+		     * @param archivo XML importatutako archivoa
+		     * @return reserva
+		     */
 		    public List<reserva> parsearXML(File archivo) {
 		        List<reserva> reservas = new ArrayList<>();
 		        try {
@@ -358,7 +412,10 @@ public class connect {
 				return data;
 			}
 		    
-		    
+		    /**
+		     * Segurtasun kopia gordetzen duen metodoa da hau
+		     * @throws SQLException SQL txarto badago eman ahal duen errorea da.
+		     */
 		    
 		    public static void sekurtasunagorde() throws SQLException {
 
@@ -394,7 +451,12 @@ public class connect {
 		        }
 		    }
 		    
-	    	
+	    	/**
+	    	 * Binairoa kargatzen duen metodoa da hau
+	    	 * @param tableModel salbuespenak kontrolatzeko erabiliko dugu
+	    	 * @throws IOException salbuespenak kontrolatzeko erabiliko dugu
+	    	 * @throws ClassNotFoundException salbuespenak kontrolatzeko erabiliko dugu
+	    	 */
 		    public static void binarioaKargatu(DefaultTableModel tableModel) throws IOException, ClassNotFoundException {
 
 			 	 String filepath = "";
