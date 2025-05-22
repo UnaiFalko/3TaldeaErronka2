@@ -11,14 +11,17 @@ import java.sql.Statement;
  * @version 1.0
  */
 
-public abstract class pertsona {
-    protected String NAN;
-    protected String izena;
-    protected String abizena;
-    protected String rola;
-    protected String emaila;
-    protected int telefonoa;
-    protected String pasahitza;
+public class pertsona {
+
+	private String NAN;
+	private String izena;
+	private String abizena;
+	private String rola;
+	private String emaila;
+	private int telefonoa;
+	private String pasahitza;
+	
+	
 	
 	public pertsona() {
 		super();

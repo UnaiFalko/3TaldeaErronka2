@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import Controller.connect;
 import modelo.pertsona;
 
+
 import java.awt.Toolkit;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
