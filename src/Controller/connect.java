@@ -219,15 +219,15 @@ public class connect {
 							idRepresentacion.appendChild(idobra);
 
 							Element hora = doc.createElement("hora");
-							idobra.appendChild(doc.createTextNode(rs.getString("hora")));
+							hora.appendChild(doc.createTextNode(rs.getString("hora")));
 							idRepresentacion.appendChild(hora);
 
 							Element dia = doc.createElement("dia");
-							idobra.appendChild(doc.createTextNode(rs.getString("dia")));
+							dia.appendChild(doc.createTextNode(rs.getString("dia")));
 							idRepresentacion.appendChild(dia);
 							
 							Element aforo = doc.createElement("aforo");
-							idobra.appendChild(doc.createTextNode(rs.getString("aforo")));
+							aforo.appendChild(doc.createTextNode(rs.getString("aforo")));
 							idRepresentacion.appendChild(aforo);
 					}
 
