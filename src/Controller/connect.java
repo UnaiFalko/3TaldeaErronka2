@@ -4,8 +4,10 @@ import java.io.File;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -329,6 +332,144 @@ public class connect {
 
 	        return datos;
 	    }
+	    public static void sekurtasunagorde() throws SQLException {
+
+			   
+	        try {
+	            FileOutputStream fos = new FileOutputStream("Sekurtasunkopia");
+	            ObjectOutputStream idatzi = new ObjectOutputStream(fos);
+	            List<pertsona> lista = new ArrayList<>();
+	    		Connection con = conexion();
+	    		Statement st = con.createStatement();
+	    		ResultSet resultSet = (ResultSet) st.executeQuery("SELECT * FROM persona;");
+
+	    		while (resultSet.next()) {
+	    			String NAN = resultSet.getString("DNI");
+	    			String izena = resultSet.getString("nombre");
+	    			String abizena = resultSet.getString("apellido");
+	    			String rola = resultSet.getString("rol");
+	    			String emaila = resultSet.getString("email");
+	    			int telefonoa = resultSet.getInt("telefono");
+	    			String pasahitza = resultSet.getString("contrasenya");
+	    			pertsona p = new pertsona(NAN, izena, abizena, rola, emaila, telefonoa, pasahitza);
+	    			lista.add(p);
+	    			
+	            for (int i = 0; i < lista.size(); i++) {
+	                idatzi.writeObject(lista);
+	            }
+	            idatzi.close();
+	            fos.close();
+	    		}
+
+	        } catch (Exception e) {
+	            System.out.println("Ez da ondo sortu " + e.getMessage());
+	        }
+	    }
+	    
+    	/**
+    	 * Binairoa kargatzen duen metodoa da hau
+    	 * @param tableModel salbuespenak kontrolatzeko erabiliko dugu
+    	 * @throws IOException salbuespenak kontrolatzeko erabiliko dugu
+    	 * @throws ClassNotFoundException salbuespenak kontrolatzeko erabiliko dugu
+    	 */
+	    public static void binarioaKargatu(DefaultTableModel tableModel) throws IOException, ClassNotFoundException {
+
+		 	 String filepath = "";
+	            JFileChooser aukeratu = new JFileChooser();
+	            aukeratu.setCurrentDirectory(new File("."));
+	            int result = aukeratu.showOpenDialog(aukeratu);
+	            if (result == JFileChooser.APPROVE_OPTION) {
+
+	                File selectedFile = aukeratu.getSelectedFile();
+
+	                filepath = selectedFile.getAbsolutePath();
+	    	
+	    	
+	        try {
+	            FileInputStream fis = new FileInputStream("");
+	            ObjectInputStream leer;
+
+	            while (fis.available() > 0) {
+	                leer = new ObjectInputStream(fis);
+	               
+	                try {
+			        FileOutputStream fos = new FileOutputStream("Sekurtasunkopia");
+			        ObjectOutputStream idatzi = new ObjectOutputStream(fos);
+	                List<pertsona> lista = new ArrayList<>();
+	                Connection con = conexion();
+	                Statement st = con.createStatement();
+		    		ResultSet resultSet = (ResultSet) st.executeQuery("SELECT * FROM persona;");
+	                
+	            	while (resultSet.next()) {
+		    			String NAN = resultSet.getString("DNI");
+		    			String izena = resultSet.getString("nombre");
+		    			String abizena = resultSet.getString("apellido");
+		    			String rola = resultSet.getString("rol");
+		    			String emaila = resultSet.getString("email");
+		    			int telefonoa = resultSet.getInt("telefono");
+		    			String pasahitza = resultSet.getString("contrasenya");
+		    			pertsona p = new pertsona(NAN, izena, abizena, rola, emaila, telefonoa, pasahitza);
+		    			lista.add(p);
+		    			
+		            for (int i = 0; i < lista.size(); i++) {
+		                idatzi.writeObject(lista);
+		            }
+		            idatzi.close();
+		            fos.close();
+		    		}
+	                
+	                tableModel.setRowCount(0);
+	                for (int i = 0; i < lista.size(); i++) {
+	                    tableModel.addRow(new Object[] { lista.get(i).getNAN(), lista.get(i).getIzena(),
+	                    lista.get(i).getAbizena(), lista.get(i).getRola(), lista.get(i).getEmaila(), 
+	                    lista.get(i).getTelefonoa(), lista.get(i).getPasahitza() });
+	                }
+	                }finally {}
+
+	            } } catch (Exception e) {
+	            System.out.println("Datuak Ondo igo dira. ");
+
+	        }
+	            }
+	    }
+	    /**
+		 * Pertsona klasea ezabatzeko erabiltzen den metodoa
+		 * @param dniberria DNI berria gordetzeko erabiltzen den atributua
+		 * @throws SQLException SQLak errorea ematen badu detektatzeko erabiltzen dena		
+		 */
+		public void pertsonaezabatu(String dniberria) throws SQLException {
+			Connection dbConnection = null;
+			Statement statement = null;
+			pertsona per = new pertsona();
+			ErabiltzaileaEditatu ered = new ErabiltzaileaEditatu();
+			
+			ered.erabilitakodnia = dniberria; 
+
+				String deleteTableSQL = "DELETE FROM persona WHERE DNI = '" + dniberria + "'";
+				
+				try {
+					dbConnection = conexion();
+					statement = dbConnection.createStatement();
+					statement.executeUpdate(deleteTableSQL);
+				
+				}
+				 catch (SQLException e) {
+
+					System.out.println(e.getMessage());
+
+				} finally {
+
+					if (statement != null) {
+						statement.close();
+					}
+
+					if (dbConnection != null) {
+						dbConnection.close();
+					}
+				}
+				
+				
+}	
 }
 
 	    

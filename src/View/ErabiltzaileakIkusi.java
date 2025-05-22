@@ -16,6 +16,7 @@ import modelo.pertsona;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,7 +26,6 @@ public class ErabiltzaileakIkusi extends JFrame {
 	connect conexion = new connect();
 	pertsona personita = new pertsona();
 	List lista = conexion.getAll();
-	public Iragaziak iragaziak;
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -120,10 +120,26 @@ public class ErabiltzaileakIkusi extends JFrame {
 		btnNewButton_1 = new JButton("Segurtasun kopia egin");
 		btnNewButton_1.setBounds(293, 300, 159, 21);
 		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					connect.sekurtasunagorde();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		btnNewButton_2 = new JButton("Segurtasun kopia igo");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					connect.binarioaKargatu(model1);
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_2.setBounds(62, 300, 159, 21);

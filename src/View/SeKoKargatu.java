@@ -5,9 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JLabel;
 
 public class SeKoKargatu extends JFrame {
 
@@ -15,7 +17,7 @@ public class SeKoKargatu extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -31,7 +33,7 @@ public class SeKoKargatu extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Frame-a sortzen du
 	 */
 	public SeKoKargatu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,13 +45,9 @@ public class SeKoKargatu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextArea txtrSegurtasunKopia = new JTextArea();
-		txtrSegurtasunKopia.setForeground(new Color(0, 64, 128));
-		txtrSegurtasunKopia.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		txtrSegurtasunKopia.setBackground(new Color(192, 192, 192));
-		txtrSegurtasunKopia.setText("Segurtasun Kopia modu onean kargatu da!");
-		txtrSegurtasunKopia.setBounds(22, 93, 404, 37);
-		contentPane.add(txtrSegurtasunKopia);
+		JLabel lblNewLabel = new JLabel("SEGURTASUN KOPIA KARGATU DA");
+		lblNewLabel.setFont(new Font("MS PGothic", Font.PLAIN, 24));
+		lblNewLabel.setBounds(41, 84, 346, 76);
+		contentPane.add(lblNewLabel);
 	}
-
 }

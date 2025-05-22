@@ -35,7 +35,7 @@ public class inicionsesiada extends JFrame {
 	
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -51,7 +51,7 @@ public class inicionsesiada extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Frame-a sortzen du
 	 */
 	public inicionsesiada() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

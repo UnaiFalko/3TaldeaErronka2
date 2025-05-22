@@ -39,7 +39,7 @@ public class ErabiltzaileaGehitu extends JFrame {
 	private JTextField textField_5;
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -55,7 +55,7 @@ public class ErabiltzaileaGehitu extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Frame-a sortzen du
 	 */
 	public ErabiltzaileaGehitu() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));

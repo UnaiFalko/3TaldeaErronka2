@@ -47,7 +47,7 @@ public class ErabiltzaileaEditatu extends JFrame {
 	
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,8 +63,8 @@ public class ErabiltzaileaEditatu extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * @throws SQLException 
+	 * Frame-a sortzen du
+	 * @throws SQLException salbuespenak kontrolatzeko erabiliko dugu 
 	 */
 	public ErabiltzaileaEditatu() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
@@ -160,7 +160,6 @@ public class ErabiltzaileaEditatu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				    erabilitakodnia = comboBox.getSelectedItem().toString();
-				    System.out.println(erabilitakodnia);
 			} 
 		} 
 		); 
@@ -189,8 +188,6 @@ public class ErabiltzaileaEditatu extends JFrame {
 			per.setPasahitza(textField_5.getText());
 
 			connect Con=new connect();
-//			per.setNAN(txtJJ.getText());
-			//System.out.println(per.setNAN(txtJJ.getText()));
 			try {
 				Con.pertsonaeditatu(textField.getText(),  textField_1.getText(),  textField_2.getText(),  textField_3.getText(), Integer.parseInt(textField_4.getText())  , textField_5.getText(), erabilitakodnia);
 			} catch (SQLException e1) {

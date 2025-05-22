@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JLabel;
 
 public class SeKoGorde extends JFrame {
 
@@ -16,7 +17,7 @@ public class SeKoGorde extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * Aplikaziñoa abiarazten du
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -32,7 +33,7 @@ public class SeKoGorde extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Frame-a sortzen du
 	 */
 	public SeKoGorde() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,14 +45,9 @@ public class SeKoGorde extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextArea txtrSegurtasunKopiaModu = new JTextArea();
-		txtrSegurtasunKopiaModu.setColumns(2);
-		txtrSegurtasunKopiaModu.setRows(2);
-		txtrSegurtasunKopiaModu.setForeground(new Color(0, 64, 128));
-		txtrSegurtasunKopiaModu.setBackground(new Color(192, 192, 192));
-		txtrSegurtasunKopiaModu.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-		txtrSegurtasunKopiaModu.setText("Segurtasun kopia modu onean gorde da!");
-		txtrSegurtasunKopiaModu.setBounds(28, 102, 385, 45);
-		contentPane.add(txtrSegurtasunKopiaModu);
+		JLabel lblNewLabel = new JLabel("SEGURTASUN KOPIA GORDE DA");
+		lblNewLabel.setFont(new Font("MS PGothic", Font.PLAIN, 24));
+		lblNewLabel.setBounds(41, 84, 346, 76);
+		contentPane.add(lblNewLabel);
 	}
 }
