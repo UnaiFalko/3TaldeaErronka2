@@ -26,7 +26,7 @@ public class gestionusuarios extends JFrame {
 	private ErabiltzaileaGehitu erabiltzaileagehitu;
 	private ErabiltzaileaEzabatu erabiltzaileaezabatu;
 	private ErabiltzaileaEditatu erabiltzaileaeditatu;
-	public ErabiltzaileakIkusi erabiltzaileakikusi;
+	private ErabiltzaileakIkusi erabiltzaileakikusi;
 	/**
 	 * Aplikaziñoa abiarazten du
 	 */

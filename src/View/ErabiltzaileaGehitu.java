@@ -20,6 +20,8 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /*
  * @author EkainKepaUnai
@@ -53,6 +55,7 @@ public class ErabiltzaileaGehitu extends JFrame {
 			}
 		});
 	}
+	public gestionusuarios gestionusuarios;
 
 	/**
 	 * Frame-a sortzen du
@@ -143,8 +146,27 @@ public class ErabiltzaileaGehitu extends JFrame {
 		contentPane.add(textField_5);
 		
 		JButton btnNewButton = new JButton("Gehitu");
-		btnNewButton.setBounds(170, 242, 85, 21);
+		btnNewButton.setBounds(94, 242, 85, 21);
 		contentPane.add(btnNewButton);
+		
+		JButton btnAtzeratu = new JButton("Atzera");
+		btnAtzeratu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(gestionusuarios != null) {
+					gestionusuarios.setVisible(true);;
+				}else {
+					try {
+						gestionusuarios = new gestionusuarios();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					gestionusuarios.setVisible(true);
+				}
+			}
+		});
+		btnAtzeratu.setBounds(231, 242, 85, 21);
+		contentPane.add(btnAtzeratu);
 		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
