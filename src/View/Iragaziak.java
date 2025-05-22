@@ -44,7 +44,7 @@ public class Iragaziak extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Iragaziak");
+		JLabel lblNewLabel = new JLabel("Iragaziaak");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(173, 10, 96, 19);
 		contentPane.add(lblNewLabel);
