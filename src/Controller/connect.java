@@ -276,5 +276,59 @@ public class connect {
 			ResultSet resultSet = (ResultSet) st.executeQuery("SELECT * FROM reserva;");
 
 	    }
+	    public Object[][] getFilteredData(String izena, String nan) {
+	        List<Object[]> listaFinal = new ArrayList<>();
+
+	        String sql = "SELECT * FROM persona WHERE 1=1";
+	        if (izena != null && !izena.isEmpty()) {
+	            sql += " AND nombre LIKE ?";
+	        }
+	        if (nan != null && !nan.isEmpty()) {
+	            sql += " AND dni LIKE ?";
+	        }
+
+	        String url = "jdbc:mysql://localhost:3306/reservaentradas";
+			String username = "root";
+			String password = "";
+			Connection conexion = null;
+
+			try {
+				conexion = DriverManager.getConnection(url, username, password);
+	             PreparedStatement pst = conexion.prepareStatement(sql); {
+
+	            int paramIndex = 1;
+	            if (izena != null && !izena.isEmpty()) {
+	                pst.setString(paramIndex++, "%" + izena + "%");
+	            }
+	            if (nan != null && !nan.isEmpty()) {
+	                pst.setString(paramIndex++, "%" + nan + "%");
+	            }
+
+	            ResultSet rs = pst.executeQuery();
+	            while (rs.next()) {
+	                Object[] fila = {
+	                    rs.getString("dni"),
+	                    rs.getString("nombre"),
+	                    rs.getString("apellido"),
+	                    rs.getString("rol"),
+	                    rs.getString("email"),
+	                    rs.getString("telefono"),
+	                    rs.getString("contrasenya")
+	                };
+	                listaFinal.add(fila);
+	            }
+	        }} catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        // Convertir la lista en una matriz
+	        Object[][] datos = new Object[listaFinal.size()][7];
+	        for (int i = 0; i < listaFinal.size(); i++) {
+	            datos[i] = listaFinal.get(i);
+	        }
+
+	        return datos;
+	    }
 }
+
 	    

@@ -17,6 +17,9 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Font;
 
 public class ErabiltzaileakIkusi extends JFrame {
 	connect conexion = new connect();
@@ -29,6 +32,8 @@ public class ErabiltzaileakIkusi extends JFrame {
 	private JTable table;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -85,15 +90,31 @@ public class ErabiltzaileakIkusi extends JFrame {
 		JButton btnNewButton = new JButton("Iragazi");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(iragaziak != null) {
-					iragaziak.setVisible(true);;
-				}else {
-					iragaziak = new Iragaziak();
-					iragaziak.setVisible(true);
-				}
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String izena = textField.getText();
+						String nan = textField_1.getText();
+
+						Object[][] datosFiltrados = conexion.getFilteredData(izena, nan);
+						DefaultTableModel model = new DefaultTableModel();
+						model.addColumn("NAN");
+						model.addColumn("Izena");
+						model.addColumn("Abizena");
+						model.addColumn("Rola");
+						model.addColumn("Emaila");
+						model.addColumn("Telefonoa");
+						model.addColumn("Pasahitza");
+
+						for (Object[] fila : datosFiltrados) {
+							model.addRow(fila);
+						}
+
+						table.setModel(model);
+					}
+				});
 			}
 		});
-		btnNewButton.setBounds(402, 23, 85, 21);
+		btnNewButton.setBounds(349, 23, 85, 21);
 		contentPane.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("Segurtasun kopia egin");
@@ -107,6 +128,26 @@ public class ErabiltzaileakIkusi extends JFrame {
 		});
 		btnNewButton_2.setBounds(62, 300, 159, 21);
 		contentPane.add(btnNewButton_2);
+		
+		JLabel lblNewLabel = new JLabel("Izena:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(26, 25, 45, 13);
+		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(67, 24, 96, 19);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNan = new JLabel("NAN:");
+		lblNan.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNan.setBounds(173, 25, 45, 13);
+		contentPane.add(lblNan);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(207, 25, 96, 19);
+		contentPane.add(textField_1);
 		model1.addColumn("1");
 		model1.addColumn("2");
 		model1.addColumn("3");
