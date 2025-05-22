@@ -2,6 +2,7 @@ package View;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,7 +22,7 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import APP.Main;
+
 import Controller.connect;
 import modelo.reserva;
 
@@ -58,7 +59,6 @@ public class reservaentradas extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTable table_1;
-	Main programa = new Main();
 	reserva paco = new reserva();
 	connect conexion = new connect();
 
