@@ -11,6 +11,10 @@ import java.sql.Statement;
  * @version 1.0
  */
 
+/**
+ * Atributuak deklaratzen duen metodo bat sortuko dugu
+ */
+
 public class pertsona {
 
 	private String NAN;
