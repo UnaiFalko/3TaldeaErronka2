@@ -62,6 +62,7 @@ public class ErabiltzaileaEditatu extends JFrame {
 			}
 		});
 	}
+	public gestionusuarios gestionusuarios;
 
 	/**
 	 * Frame-a sortzen du
@@ -152,7 +153,7 @@ public class ErabiltzaileaEditatu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(170, 242, 85, 21);
+		btnNewButton.setBounds(105, 242, 85, 21);
 		contentPane.add(btnNewButton);
 		
 		comboBox = new JComboBox();
@@ -166,6 +167,25 @@ public class ErabiltzaileaEditatu extends JFrame {
 		); 
 		
 		contentPane.add(comboBox);
+		
+		JButton btnNewButton_1 = new JButton("Atzera");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(gestionusuarios != null) {
+					gestionusuarios.setVisible(true);;
+				}else {
+					try {
+						gestionusuarios = new gestionusuarios();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					gestionusuarios.setVisible(true);
+				}
+			}
+		});
+		btnNewButton_1.setBounds(257, 242, 85, 21);
+		contentPane.add(btnNewButton_1);
 		List<pertsona> lista = conexion.getAll();
 		for (pertsona p : lista) {
 			comboBox.addItem(p.getNAN());

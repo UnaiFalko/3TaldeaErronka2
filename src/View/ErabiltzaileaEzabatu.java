@@ -45,6 +45,7 @@ public class ErabiltzaileaEzabatu extends JFrame {
 			}
 		});
 	}
+	public gestionusuarios gestionusuarios;
 
 	/**
 	 * Frame-a sortzen du
@@ -85,13 +86,32 @@ public class ErabiltzaileaEzabatu extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(170, 202, 85, 21);
+		btnNewButton.setBounds(74, 203, 85, 21);
 		contentPane.add(btnNewButton);
 		
 		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setBounds(165, 149, 96, 21);
 		
 		contentPane.add(comboBox);
+		
+		JButton btnNewButton_1 = new JButton("Atzera");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(gestionusuarios != null) {
+					gestionusuarios.setVisible(true);;
+				}else {
+					try {
+						gestionusuarios = new gestionusuarios();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					gestionusuarios.setVisible(true);
+				}
+			}
+		});
+		btnNewButton_1.setBounds(259, 203, 85, 21);
+		contentPane.add(btnNewButton_1);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

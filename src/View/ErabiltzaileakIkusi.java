@@ -35,6 +35,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 	private JButton btnNewButton_2;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JButton btnNewButton_3;
 
 	/**
 	 * Launch the application.
@@ -51,6 +52,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 			}
 		});
 	}
+	public gestionusuarios gestionusuarios;
 
 	/**
 	 * Create the frame.
@@ -119,7 +121,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("Segurtasun kopia egin");
-		btnNewButton_1.setBounds(293, 300, 159, 21);
+		btnNewButton_1.setBounds(336, 300, 159, 21);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -143,7 +145,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2.setBounds(62, 300, 159, 21);
+		btnNewButton_2.setBounds(26, 300, 159, 21);
 		contentPane.add(btnNewButton_2);
 		
 		JLabel lblNewLabel = new JLabel("Izena:");
@@ -165,6 +167,25 @@ public class ErabiltzaileakIkusi extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(207, 25, 96, 19);
 		contentPane.add(textField_1);
+		
+		btnNewButton_3 = new JButton("Atzera");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(gestionusuarios != null) {
+					gestionusuarios.setVisible(true);;
+				}else {
+					try {
+						gestionusuarios = new gestionusuarios();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					gestionusuarios.setVisible(true);
+				}
+			}
+		});
+		btnNewButton_3.setBounds(218, 300, 85, 21);
+		contentPane.add(btnNewButton_3);
 		model1.addColumn("1");
 		model1.addColumn("2");
 		model1.addColumn("3");
