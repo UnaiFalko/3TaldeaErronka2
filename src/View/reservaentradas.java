@@ -22,7 +22,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import APP.Main;
-import modelo.connect;
+import Controller.connect;
 import modelo.reserva;
 
 import javax.swing.JLabel;
@@ -38,9 +38,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.Toolkit;
 import java.sql.Statement;
 
@@ -57,6 +60,7 @@ public class reservaentradas extends JFrame {
 	private JTable table_1;
 	Main programa = new Main();
 	reserva paco = new reserva();
+	connect conexion = new connect();
 
 	/**
 	 * Launch the application.
@@ -131,42 +135,45 @@ public class reservaentradas extends JFrame {
 
 		JButton btnErreserbakGehitu = new JButton("ERRESERBAK GEHITU:");
 		btnErreserbakGehitu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setFileFilter(new FiltroDeXML());
-				int seleccion = fileChooser.showOpenDialog(getParent());
-				Main.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
-				String[] columnas = { "ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa" };
-				contentPane.add(table);
-				DefaultTableModel model = new DefaultTableModel(columnas, 0);
-				table.setModel(model);
-				ArrayList<reserva> reservas = (ArrayList<reserva>) Main
-						.leerXML("C:\\Users\\1AW3-25\\Downloads\\reserva.xml");
-				for (reserva r : reservas) {
-					Object[] fila = { r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago() };
-					model.addRow(fila);
+		    public void actionPerformed(ActionEvent e) {
+		    	
+		    	JFileChooser fileChooser = new JFileChooser();
+		    	fileChooser.setDialogTitle("XML");
+		    	fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos XML", "xml"));
+		    	fileChooser.setAcceptAllFileFilterUsed(false);
 
-				}
-			}
+		    	int seleccion = fileChooser.showOpenDialog(null);
+		    	if (seleccion == JFileChooser.APPROVE_OPTION) {
+		    	    File archivoXML = fileChooser.getSelectedFile();
+
+		    	    List<reserva> reservas = conexion.parsearXML(archivoXML);
+
+		    	    DefaultTableModel model = (DefaultTableModel) table.getModel();
+		    	    
+
+		    	    for (reserva r : reservas) {
+		    	        Object[] fila = {
+		    	            r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()
+		    	        };
+		    	        model.addRow(fila);
+		    	    
+		    	   Controller.connect.insertarReserva(r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago());
+		    	    
+		    	   
+		    	}
+		    	}
+		    }
 		});
+
 		btnErreserbakGehitu.setBounds(259, 219, 167, 21);
 		contentPane.add(btnErreserbakGehitu);
+		String[] columnas = {"ID Sesion","Nombre","Apellido","DNI","MetodoPago"};
+		DefaultTableModel model = new DefaultTableModel(columnas,0);
 		table = new JTable();
 		table.setBounds(26, 70, 381, 129);
-		contentPane.add(table);
-		DefaultTableModel model = new DefaultTableModel();
 		table.setModel(model);
-
-		model.addColumn("ID_SESION");
-		model.addColumn("Izena");
-		model.addColumn("Abizena");
-		model.addColumn("NAN");
-		model.addColumn("Ordaintze Metodoa");
-		model.addRow(new Object[] { "1", "Kepa", "Capipe", "12345678P", "Paypal" });
-		model.addRow(new Object[] { "2", "Unai", "Garralon", "32414425G", "Visa" });
-		model.addRow(new Object[] { "3", "Ekain", "Calvinho", "89204294K", "Visa" });
-		model.addRow(new Object[] { "4", "JeanCarlo", "Toro", "323486597", "Mastercard" });
-		/**/
+		contentPane.add(table);
+		
 		table_1 = new JTable();
 		table_1.setBounds(26, 54, 381, 21);
 		contentPane.add(table_1);
@@ -177,8 +184,8 @@ public class reservaentradas extends JFrame {
 		model1.addColumn("3");
 		model1.addColumn("4");
 		model1.addColumn("5");
-		model1.addRow(new Object[] { "ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa" });
-
+		model1.addRow(new Object[]{"ID_SESION", "Izena", "Abizena", "NAN", "Ordaintze Metodoa"});
+        
 		
 	}
 }

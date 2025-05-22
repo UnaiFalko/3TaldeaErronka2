@@ -1,4 +1,4 @@
-package modelo;
+package Controller;
 
 import java.io.File;
 import java.sql.Connection;
@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,8 +27,12 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import View.ErabiltzaileaEditatu;
+import modelo.pertsona;
+import modelo.reserva;
 
 public class connect {
 
@@ -183,7 +192,7 @@ public class connect {
 				Document doc = db.newDocument();
 
 				// Crear el elemento raíz
-				Element root = doc.createElement("Representaciones");
+				Element root = doc.createElement("teatro");
 				doc.appendChild(root);
 
 				// Establecer la conexión a la base de datos
@@ -196,16 +205,16 @@ public class connect {
 
 
 						while (rs.next()) {
-							// Crear un elemento "usuario" para cada fila
-							Element idRepresentacion = doc.createElement("idRepresentacion");
+							// Crear un elemento para cada fila
+							Element idRepresentacion = doc.createElement("representacion");
 							root.appendChild(idRepresentacion);
 
 							// Crear elementos para los atributos
-							Element cifteatro = doc.createElement("cifteatro");
+							Element cifteatro = doc.createElement("codigo");
 							cifteatro.appendChild(doc.createTextNode(rs.getString("cifteatro")));
 							idRepresentacion.appendChild(cifteatro);
 
-							Element idobra = doc.createElement("idobra");
+							Element idobra = doc.createElement("idsesion");
 							idobra.appendChild(doc.createTextNode(rs.getString("idobra")));
 							idRepresentacion.appendChild(idobra);
 
@@ -235,5 +244,110 @@ public class connect {
 				}
 			}
 			
+			 //Reserva gehitu Datu Basera
+		    public static void insertarReserva(int idRepresentacion, String apellido, String dni, String metodoPago, String nombre) {
+		    	String url = "jdbc:mysql://localhost:3306/reservaentradas";
+				String username = "root";
+				String password = "";
+				Connection conexion = null;
+
+				try {
+					conexion = DriverManager.getConnection(url, username, password);
+		            
+		            String checkDNI = "SELECT * FROM persona WHERE DNI = ?";
+		            PreparedStatement checkStmt = conexion.prepareStatement(checkDNI);
+		            checkStmt.setString(1, dni);
+		            ResultSet rs = checkStmt.executeQuery();
+
+
+		           
+		            String insertReserva = "INSERT INTO reserva (nombre, apellido, dni, metodoPago) VALUES (?, ?, ?, ?)";
+		            PreparedStatement reservaStmt = conexion.prepareStatement(insertReserva);
+		            reservaStmt.setString(1, nombre);
+		            reservaStmt.setString(2, apellido);
+		            reservaStmt.setString(3, dni);
+		            reservaStmt.setString(4, metodoPago);
+		            reservaStmt.executeUpdate();
+
+		            reservaStmt.close();
+		            checkStmt.close();
+		            conexion.close();
+
+		            JOptionPane.showMessageDialog(null, "Erreserbatuta.");
+
+		        } catch (Exception e) {
+		            JOptionPane.showMessageDialog(null, "Errorea Erreserbatzen: " + e.getMessage());
+		            e.printStackTrace();
+		        }
+		    }
+		    
+		    public List<reserva> parsearXML(File archivo) {
+		        List<reserva> reservas = new ArrayList<>();
+		        try {
+		            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		            Document doc = dBuilder.parse(archivo);
+		            doc.getDocumentElement().normalize();
+
+		            NodeList nList = doc.getElementsByTagName("reserva");
+
+		            for (int i = 0; i < nList.getLength(); i++) {
+		                Node nodo = nList.item(i);
+
+		                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+		                    Element elem = (Element) nodo;
+
+		                    int id_sesion = Integer.parseInt(elem.getElementsByTagName("id_sesion").item(0).getTextContent());
+		                    String nombre = elem.getElementsByTagName("nombre").item(0).getTextContent();
+		                    String apellido = elem.getElementsByTagName("apellido").item(0).getTextContent();
+		                    String dni = elem.getElementsByTagName("dni").item(0).getTextContent();
+		                    String metodoPago = elem.getElementsByTagName("metodoPago").item(0).getTextContent();
+		                    reserva r = new reserva(id_sesion, nombre, apellido, dni, metodoPago);
+
+		                    reservas.add(new reserva(id_sesion, nombre, apellido, dni, metodoPago));
+		                }
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		        return reservas;
+		    }
+		    
+		    public static void mostrarTabla(List<reserva> reservas) {
+		        String[] columnas = {"id_sesion", "nombre", "apellido", "dni", "metodoPago"};
+		        DefaultTableModel modelo = new DefaultTableModel(columnas, 0
+		        		);
+
+		        for (reserva r : reservas) {
+		            Object[] fila = {r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago()};
+		            modelo.addRow(fila);
+		        }
+
+		        JTable tabla = new JTable(modelo);
+		        JScrollPane scrollPane = new JScrollPane(tabla);
+
+		        JFrame frame = new JFrame("Datos del XML");
+		        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		        frame.add(scrollPane);
+		        frame.setSize(900, 300);
+		        frame.setVisible(true);
+		    }
+			
+		    public Object[][] getTableData() throws SQLException {
+				Object[][] data = new Object[this.getAll().size()][7];
+				
+				for(int i = 0; i < getAll().size(); i ++) {
+					
+					data[i][0] = getAll().get(i).getNAN();
+					data[i][1] = getAll().get(i).getIzena();
+					data[i][2] = getAll().get(i).getAbizena();
+					data[i][3] = getAll().get(i).getRola();
+					data[i][4] = getAll().get(i).getEmaila();
+					data[i][5] = getAll().get(i).getTelefonoa();
+					data[i][6] = getAll().get(i).getPasahitza();
+				}
+				
+				return data;
+			}
 
 }
