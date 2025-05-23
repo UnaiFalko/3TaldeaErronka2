@@ -119,11 +119,11 @@ public class ErabiltzaileaEzabatu extends JFrame {
 			} 
 		} 
 		); 
-		List<pertsona> lista = conexion.getAll();
+		List<pertsona> lista = conexion.getAllPertsona();
 		for (pertsona p : lista) {
 			comboBox.addItem(p.getNAN());
 		}
-		conexion.getAll().get(conexion.getAll().size()-2);
+		conexion.getAllPertsona().get(conexion.getAllPertsona().size()-2);
 		
 		
 	        }

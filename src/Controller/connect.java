@@ -58,7 +58,7 @@ public class connect {
 
 		try {
 			conexion = DriverManager.getConnection(url, username, password);
-			// System.out.println("Datu basera konektatuta");
+			
 
 		} catch (SQLException e) {
 			System.out.println("Errorea konektatzen " + e.getMessage());
@@ -72,7 +72,7 @@ public class connect {
 	 * @return lista
 	 * @throws SQLException SQL-ren errorea
 	 */
-	public List<pertsona> getAll() throws SQLException {
+	public List<pertsona> getAllPertsona() throws SQLException {
 		List<pertsona> lista = new ArrayList<>();
 		Connection con = conexion();
 		Statement st = con.createStatement();
@@ -237,19 +237,19 @@ public class connect {
 			 * @throws TransformerException metodoak eman ahal duen errore bat
 			 */
 			public static void saioakdeskargatu () throws ParserConfigurationException, SQLException, TransformerException {
-				// Nombre del archivo XML de salida
+			
 				String xmlFile = "descargadatos.xml";
 
-				// Crear el documento XML
+				
 				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 				DocumentBuilder db = dbf.newDocumentBuilder();
 				Document doc = db.newDocument();
 
-				// Crear el elemento raíz
+				
 				Element root = doc.createElement("teatro");
 				doc.appendChild(root);
 
-				// Establecer la conexión a la base de datos
+				
 				try {
 					Connection con = conexion();
 					Statement st = con.createStatement();
@@ -259,11 +259,11 @@ public class connect {
 
 
 						while (rs.next()) {
-							// Crear un elemento para cada fila
+							
 							Element idRepresentacion = doc.createElement("representacion");
 							root.appendChild(idRepresentacion);
 
-							// Crear elementos para los atributos
+							//Elementuak
 							Element cifteatro = doc.createElement("codigo");
 							cifteatro.appendChild(doc.createTextNode(rs.getString("cifteatro")));
 							idRepresentacion.appendChild(cifteatro);
@@ -285,7 +285,7 @@ public class connect {
 							idRepresentacion.appendChild(aforo);
 					}
 
-					// Escribir el documento XML a un archivo
+					//XML-a Sortzeko
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
 					DOMSource source = new DOMSource(doc);
@@ -398,17 +398,17 @@ public class connect {
 		    }
 			
 		    public Object[][] getTableData() throws SQLException {
-				Object[][] data = new Object[this.getAll().size()][7];
+				Object[][] data = new Object[this.getAllPertsona().size()][7];
 				
-				for(int i = 0; i < getAll().size(); i ++) {
+				for(int i = 0; i < getAllPertsona().size(); i ++) {
 					
-					data[i][0] = getAll().get(i).getNAN();
-					data[i][1] = getAll().get(i).getIzena();
-					data[i][2] = getAll().get(i).getAbizena();
-					data[i][3] = getAll().get(i).getRola();
-					data[i][4] = getAll().get(i).getEmaila();
-					data[i][5] = getAll().get(i).getTelefonoa();
-					data[i][6] = getAll().get(i).getPasahitza();
+					data[i][0] = getAllPertsona().get(i).getNAN();
+					data[i][1] = getAllPertsona().get(i).getIzena();
+					data[i][2] = getAllPertsona().get(i).getAbizena();
+					data[i][3] = getAllPertsona().get(i).getRola();
+					data[i][4] = getAllPertsona().get(i).getEmaila();
+					data[i][5] = getAllPertsona().get(i).getTelefonoa();
+					data[i][6] = getAllPertsona().get(i).getPasahitza();
 				}
 				
 				return data;
