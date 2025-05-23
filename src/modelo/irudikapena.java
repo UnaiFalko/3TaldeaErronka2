@@ -1,11 +1,16 @@
 package modelo;
 
-import java.sql.Date;
-import java.sql.Time;
-
 /*
  * @author EkainKepaUnai
  * @version 1.0
+ */
+
+
+import java.sql.Date;
+import java.sql.Time;
+
+/**
+ * Atributuak deklaratzen duen metodo bat sortuko dugu
  */
 
 public class irudikapena {

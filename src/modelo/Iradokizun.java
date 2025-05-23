@@ -1,11 +1,14 @@
 package modelo;
-
-import javax.print.attribute.DateTimeSyntax;
-
 /*
  * @author EkainKepaUnai
  * @version 1.0
  */
+import javax.print.attribute.DateTimeSyntax;
+
+/**
+ * Atributuak deklaratzen duen metodo bat sortuko dugu
+ */
+
 
 public class Iradokizun {
 

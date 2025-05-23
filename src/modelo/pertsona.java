@@ -1,14 +1,18 @@
 package modelo;
 
+
+/*
+ * @author EkainKepaUnai
+ * @version 1.0
+ */
+
 import java.sql.Connection;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-/*
- * @author EkainKepaUnai
- * @version 1.0
+/**
+ * Atributuak deklaratzen duen metodo bat sortuko dugu
  */
 
 public class pertsona {

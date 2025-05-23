@@ -5,6 +5,10 @@ package modelo;
  * @version 1.0
  */
 
+/**
+ * Atributuak deklaratzen duen metodo bat sortuko dugu
+ */
+
 public class obra {
 
 	private int obraID;
