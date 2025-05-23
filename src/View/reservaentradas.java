@@ -98,8 +98,7 @@ public class reservaentradas extends JFrame {
 	 * @throws ParserConfigurationException salbuespenak kontrolatzeko erabiliko dugu
 	 */
 	public reservaentradas() throws TransformerException, DOMException, SQLException, ParserConfigurationException {
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage("C:\\Users\\1AW3-25\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

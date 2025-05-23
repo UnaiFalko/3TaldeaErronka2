@@ -19,4 +19,3 @@ public class Vip extends pertsona {
 
     
 }
-

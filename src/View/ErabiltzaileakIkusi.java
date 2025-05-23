@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class ErabiltzaileakIkusi extends JFrame {
 	connect conexion = new connect();
@@ -60,6 +61,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 	 * @throws SQLException 
 	 */
 	public ErabiltzaileakIkusi() throws SQLException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\1AW3-8\\Downloads\\Taldea1-20250513T103019Z-001\\Taldea1\\argazkiak\\Logo.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 533, 368);
 		contentPane = new JPanel();
