@@ -186,11 +186,11 @@ public class ErabiltzaileaEditatu extends JFrame {
 		});
 		btnNewButton_1.setBounds(257, 242, 85, 21);
 		contentPane.add(btnNewButton_1);
-		List<pertsona> lista = conexion.getAll();
+		List<pertsona> lista = conexion.getAllPertsona();
 		for (pertsona p : lista) {
 			comboBox.addItem(p.getNAN());
 		}
-		conexion.getAll().get(conexion.getAll().size()-2);
+		conexion.getAllPertsona().get(conexion.getAllPertsona().size()-2);
 		
 		
 	

@@ -27,7 +27,7 @@ import java.awt.Font;
 public class ErabiltzaileakIkusi extends JFrame {
 	connect conexion = new connect();
 	pertsona personita = new pertsona();
-	List lista = conexion.getAll();
+	List lista = conexion.getAllPertsona();
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
