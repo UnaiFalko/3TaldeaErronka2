@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 
@@ -127,6 +128,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					connect.sekurtasunagorde();
+					JOptionPane.showMessageDialog(null, "Segurtasun kopia deskargatu da.");
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -139,6 +141,7 @@ public class ErabiltzaileakIkusi extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					connect.binarioaKargatu(model1);
+					JOptionPane.showMessageDialog(null, "Segurtasun kopia igo da.");
 				} catch (ClassNotFoundException | IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

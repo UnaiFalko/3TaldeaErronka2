@@ -157,7 +157,7 @@ public class reservaentradas extends JFrame {
 		    	        };
 		    	        model.addRow(fila);
 		    	    
-		    	   Controller.connect.insertarReserva(r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago());
+		    	   Controller.connect.ReservaGehitu(r.getId_sesion(), r.getNombre(), r.getApellido(), r.getDni(), r.getMetodoPago());
 		    	    
 		    	   
 		    	}

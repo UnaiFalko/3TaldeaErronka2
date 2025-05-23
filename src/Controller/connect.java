@@ -305,7 +305,7 @@ public class connect {
 			 * @param metodoPago Reserva klaseko String motako bariablea
 			 * @param nombre Pertsona klaseko String motako bariablea
 			 */
-		    public static void insertarReserva(int idRepresentacion, String apellido, String dni, String metodoPago, String nombre) {
+		    public static void ReservaGehitu(int idRepresentacion, String apellido, String dni, String metodoPago, String nombre) {
 		    	String url = "jdbc:mysql://localhost:3306/reservaentradas";
 				String username = "root";
 				String password = "";
