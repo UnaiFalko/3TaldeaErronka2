@@ -89,6 +89,7 @@ public class gestionusuarios extends JFrame {
 		
 		contentPane.add(btnNewButton_3);
 		
+		
 		JButton btnNewButton_1 = new JButton("Erabiltzaileak Ikusi");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

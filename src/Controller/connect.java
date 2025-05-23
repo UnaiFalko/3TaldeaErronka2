@@ -519,6 +519,12 @@ public class connect {
 		        }}
 
 		    }
+		    /**
+		     * Pertsona taulan topatzen du eta izena/nan bidez filtratzen du
+		     * @param izena Pertsona klasearen atributua
+		     * @param nan Pertsona klasearen atributua
+		     * @return datos
+		     */
 		            public Object[][] getFilteredData(String izena, String nan) {
 		                List<Object[]> listaFinal = new ArrayList<>();
 
