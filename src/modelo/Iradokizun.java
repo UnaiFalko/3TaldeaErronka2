@@ -1,14 +1,15 @@
 package modelo;
+
+import javax.print.attribute.DateTimeSyntax;
+
 /*
  * @author EkainKepaUnai
  * @version 1.0
  */
-import javax.print.attribute.DateTimeSyntax;
 
 /**
  * Atributuak deklaratzen duen metodo bat sortuko dugu
  */
-
 
 public class Iradokizun {
 
@@ -25,10 +26,10 @@ public class Iradokizun {
 		}
 		/**
 		 * Konstruktorea aldagai guztixegaz sortzen du
-		 * @param iradokizunid
-		 * @param iradokizunNAN
-		 * @param sortzeData
-		 * @param deskribapena
+		 * @param iradokizunid Iradokizun klasearen atributua
+		 * @param iradokizunNAN Iradokizun klasearen atributua
+		 * @param sortzeData Iradokizun klasearen atributua
+		 * @param deskribapena Iradokizun klasearen atributua
 		 */
 		public Iradokizun(int iradokizunid, String iradokizunNAN, DateTimeSyntax sortzeData, String deskribapena) {
 			super();
@@ -46,7 +47,7 @@ public class Iradokizun {
 		}
 		/**
 		 * IradokizunId-ren setterra
-		 * @param iradokizunid
+		 * @param iradokizunid Iradokizun klasearen atributua
 		 */
 		public void setIradokizunid(int iradokizunid) {
 			Iradokizunid = iradokizunid;
@@ -62,7 +63,7 @@ public class Iradokizun {
 		
 		/**
 		 * IradokizunNAN-en setterra
-		 * @param iradokizunNAN
+		 * @param iradokizunNAN Iradokizun klasearen atributua
 		 */
 		public void setIradokizunNAN(String iradokizunNAN) {
 			IradokizunNAN = iradokizunNAN;
@@ -77,7 +78,7 @@ public class Iradokizun {
 		}
 		/**
 		 *Sortze Datan setterra 
-		 * @param sortzeData
+		 * @param sortzeData Iradokizun klasearen atributua
 		 */
 		public void setSortzeData(DateTimeSyntax sortzeData) {
 			SortzeData = sortzeData;
@@ -92,7 +93,7 @@ public class Iradokizun {
 		}
 		/**
 		 * Deskribapena-ren setterra
-		 * @param deskribapena
+		 * @param deskribapena Iradokizun klasearen atributua
 		 */
 		public void setDeskribapena(String deskribapena) {
 			this.deskribapena = deskribapena;

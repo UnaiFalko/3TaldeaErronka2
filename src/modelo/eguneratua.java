@@ -28,10 +28,10 @@ public class eguneratua  {
 	
 	/**
 	 * Eguneratua konstruktorea zabaltzen du,aldagai guztiekaz
-	 * @param eguneraketaID
-	 * @param taulakaltetua
-	 * @param eguneraketaData
-	 * @param datuak
+	 * @param eguneraketaID Eguneratua klasearen atributua
+	 * @param taulakaltetua Eguneratua klasearen atributua
+	 * @param eguneraketaData Eguneratua klasearen atributua
+	 * @param datuak Eguneratua klasearen atributua
 	 */
 	public eguneratua(int eguneraketaID, String taulakaltetua, DateTimeSyntax eguneraketaData, String datuak) {
 		super();
@@ -43,7 +43,7 @@ public class eguneratua  {
 	
 	 /**
 	 * EguneraketaId-ren getterra
-	 * @return eguneraketaID
+	 * @return eguneraketaID 
 	 */
 	
 	public int getEguneraketaID() {
@@ -52,7 +52,7 @@ public class eguneratua  {
 	
 	 /**
 	  * EguneraketaID-ren setterra
-	  * @param eguneraketaID
+	  * @param eguneraketaID Eguneratua klasearen atributua
 	  */
 	public void setEguneraketaID(int eguneraketaID) {
 		this.eguneraketaID = eguneraketaID;
@@ -60,7 +60,7 @@ public class eguneratua  {
 	
 	/**
 	 * Taulakaltetua-ren getterra
-	 * @return taulakaltetua
+	 * @return taulakaltetua 
 	 */
 	public String getTaulakaltetua() {
 		return taulakaltetua;
@@ -68,7 +68,7 @@ public class eguneratua  {
 	
 	/**
 	 * Taulakaltetua-ren setterra
-	 * @param taulakaltetua
+	 * @param taulakaltetua Eguneratua klasearen atributua
 	 */
 	
 	public void setTaulakaltetua(String taulakaltetua) {
@@ -77,8 +77,8 @@ public class eguneratua  {
 	
 	/**
 	 * EguneraketaDataren getterra
-	 * @return eguneraketaData
-	 */
+	 * @return eguneraketaData 
+	 */ 
 	
 	public DateTimeSyntax getEguneraketaData() {
 		return eguneraketaData;
@@ -86,7 +86,7 @@ public class eguneratua  {
 	
 	/**
 	 * EguneraketaData-ren setterra
-	 * @param eguneraketaData
+	 * @param eguneraketaData Eguneratua klasearen atributua
 	 */
 	
 	public void setEguneraketaData(DateTimeSyntax eguneraketaData) {
@@ -95,7 +95,7 @@ public class eguneratua  {
 	
 	/**
 	 * Datuak-ren getterra
-	 * @return datuak
+	 * @return datuak 
 	 */
 	
 	public String getDatuak() {
@@ -104,7 +104,7 @@ public class eguneratua  {
 	
 	/**
 	 * Datuak-ren setterra
-	 * @param datuak
+	 * @param datuak Eguneratua klasearen atributua
 	 */
 	
 	public void setDatuak(String datuak) {

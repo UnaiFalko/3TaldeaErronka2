@@ -285,7 +285,7 @@ public class connect {
 							idRepresentacion.appendChild(aforo);
 					}
 
-					//XML-a Sortzeko
+					
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
 					DOMSource source = new DOMSource(doc);
